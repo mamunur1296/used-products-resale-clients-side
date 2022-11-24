@@ -2,7 +2,6 @@ import moment from "moment/moment";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../AuthProvaider/AuthProvaider";
-import { useImgbb } from "../../Hooks/imgbb";
 
 const AddProjuct = () => {
   const { user } = useContext(AuthContext);
@@ -36,7 +35,22 @@ const AddProjuct = () => {
           catagory: data.catagory,
           posttime: moment().format("MMMM Do YYYY, h:mm:ss a"),
           salarname: user?.displayName,
+          selaremail: user?.email,
         };
+        const allcatagory = {
+          catagory: data.catagory,
+        };
+        fetch("http://localhost:5000/produckt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(postinfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
       })
       .catch((err) => console.log(err));
   };
