@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../AuthProvaider/AuthProvaider";
 
 const Login = () => {
+  const { user, loginWithEmail, loginWithGoogle } = useContext(AuthContext);
   const {
     handleSubmit,
     register,
@@ -10,8 +12,19 @@ const Login = () => {
   } = useForm({
     mode: "onChange",
   });
-  const handalLogin = (id) => {
-    console.log(id);
+  const handalLogin = (data) => {
+    loginWithEmail(data.email, data.password)
+      .then((logindata) => {
+        console.log(logindata);
+      })
+      .then((err) => console.log(err));
+  };
+  const handalGoogle = () => {
+    loginWithGoogle()
+      .then((gogledata) => {
+        console.log(gogledata);
+      })
+      .then((err) => console.log(err));
   };
   return (
     <div>
@@ -43,6 +56,7 @@ const Login = () => {
               Your Password
             </label>
             <input
+              type="password"
               placeholder="Enter your Password"
               {...register("password", {
                 required: "this fild is requerd",
@@ -67,6 +81,7 @@ const Login = () => {
             Login
           </button>
           <button
+            onClick={handalGoogle}
             type="submit"
             className="text-white text-3xl  w-full mt-5 bg-gray-600 hover:bg-gray-700  font-medium rounded-full text-sm px-5 py-2.5 text-center  "
           >

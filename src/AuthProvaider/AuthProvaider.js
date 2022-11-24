@@ -18,7 +18,6 @@ const AuthProvaider = ({ children }) => {
   const [loder, setLoder] = useState(true);
   //regestation email and password
   const regester = (email, password) => {
-    setLoder(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const loginWithEmail = (email, password) => {

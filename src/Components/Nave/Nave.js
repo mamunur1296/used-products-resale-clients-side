@@ -4,8 +4,11 @@ import logo from "../../Assits/favicon.png";
 import { AuthContext } from "../../AuthProvaider/AuthProvaider";
 
 const Nave = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   const [isActive, setIsActive] = useState(true);
+  const handalLogout = () => {
+    logout().then().catch();
+  };
   return (
     <div className="w-11/12 mx-auto">
       <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
@@ -33,9 +36,9 @@ const Nave = () => {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                clip-rule="evenodd"
+                clipRule="evenodd"
               ></path>
             </svg>
           </button>
@@ -66,19 +69,20 @@ const Nave = () => {
                 </Link>
               </li>
               <li>
-                <Link
+                <button
                   className="block py-2 pl-3 pr-4 text-black hover:text-deep-purple-accent-400  rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
                   aria-current="page"
+                  onClick={handalLogout}
                 >
                   Log Out
-                </Link>
+                </button>
               </li>
               <li>
                 <Link
                   className="block py-2 pl-3 pr-4 text-black hover:text-deep-purple-accent-400  rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
                   aria-current="page"
                 >
-                  {user?.name}
+                  {user?.displayName}
                 </Link>
               </li>
             </ul>

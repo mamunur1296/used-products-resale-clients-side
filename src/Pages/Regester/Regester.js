@@ -1,16 +1,74 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../AuthProvaider/AuthProvaider";
+import { useDbuser } from "../../Hooks/authHooke";
 
 const Regester = () => {
+  const { regester, logout, updateregesterUser } = useContext(AuthContext);
+  const [loging, setLoding] = useState(false);
+  const navigate = useNavigate();
+
   const {
     handleSubmit,
     register,
+    reset,
     formState: { errors },
-  } = useForm({
-    mode: "onChange",
-  });
+  } = useForm();
   const handalRegesterForm = (data) => {
-    console.log(data);
+    setLoding(true);
+
+    const imgdata = new FormData();
+    imgdata.append("image", data.userImg[0]);
+    console.log(imgdata);
+    const url = `https://api.imgbb.com/1/upload?&key=${process.env.REACT_APP_Imgbb}`;
+    fetch(url, {
+      method: "POST",
+      body: imgdata,
+    })
+      .then((res) => res.json())
+      .then((imgdata) => {
+        regester(data.email, data.password)
+          .then((regesterdata) => {
+            const userInfo = {
+              displayName: data.firstName + " " + data.lastName,
+              photoURL: imgdata.data.display_url,
+            };
+            updateregesterUser(userInfo)
+              .then((updatedata) => {
+                console.log("ragistercomplite");
+                const dbUser = {
+                  name: data.firstName + " " + data.lastName,
+                  photo: imgdata.data.display_url,
+                  roll: data.roll,
+                  email: data.email,
+                };
+                console.log(dbUser);
+                fetch(`http://localhost:5000/users?email=${data.email}`, {
+                  method: "POST",
+                  headers: {
+                    "content-type": "application/json",
+                  },
+                  body: JSON.stringify(dbUser),
+                })
+                  .then((res) => res.json())
+                  .then((postdata) => {
+                    localStorage.setItem("token", postdata?.token);
+                    setLoding(false);
+                    logout();
+                    reset();
+                    navigate("/login");
+                  });
+              })
+              .catch((err) => {
+                setLoding(false);
+              });
+          })
+          .catch((err) => {
+            setLoding(false);
+            console.log(err);
+          });
+      });
   };
   return (
     <div className="w-1/3 mx-auto">
@@ -52,6 +110,18 @@ const Regester = () => {
         </div>
         <div className="mt-10">
           <label className="block mb-2 text-sm font-medium text-gray-900 ">
+            Select This Option
+          </label>
+          <select
+            className="block mb-2 text-sm font-medium text-gray-900 "
+            {...register("roll")}
+          >
+            <option value="user">user</option>
+            <option value="Seller">Seller</option>
+          </select>
+        </div>
+        <div className="mt-10">
+          <label className="block mb-2 text-sm font-medium text-gray-900 ">
             Profile Pick
           </label>
           <input
@@ -80,7 +150,7 @@ const Regester = () => {
           type="submit"
           className="text-white text-3xl  w-full mt-5 bg-gray-800 hover:bg-gray-700  font-medium rounded-full text-sm px-5 py-2 text-center  "
         >
-          Regester
+          {loging ? <p className="animate-pulse"> Loding...</p> : "Regester"}
         </button>
       </form>
     </div>
