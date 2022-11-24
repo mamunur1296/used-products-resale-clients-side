@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import Modal from "../../Components/Modal";
 import ProducktColam from "./ProducktColam";
 
 const SengleCatagory = () => {
+  const [isOpen, setIsOpen] = useState({});
   const data = useLoaderData();
 
   return (
@@ -14,8 +16,10 @@ const SengleCatagory = () => {
             <ProducktColam
               key={produckt._id}
               produckt={produckt}
+              setIsOpen={setIsOpen}
             ></ProducktColam>
           ))}
+          <Modal isOpen={isOpen}></Modal>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React from "react";
+import Modal from "../../Components/Modal";
 
-const ProducktColam = ({ produckt }) => {
+const ProducktColam = ({ produckt, setIsOpen }) => {
   const { img } = produckt;
   return (
     <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
@@ -29,9 +30,13 @@ const ProducktColam = ({ produckt }) => {
           Sed ut perspiciatis unde omnis iste natus error sit sed quia
           consequuntur magni voluptatem doloremque.
         </p>
-        <button className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">
-          Learn more
-        </button>
+        <label
+          onClick={() => setIsOpen(produckt)}
+          htmlFor="producktConfirmModal"
+          className="btn"
+        >
+          Book now
+        </label>
       </div>
     </div>
   );
