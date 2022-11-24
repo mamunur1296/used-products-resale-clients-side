@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import catagory from "../../Assits/catagory.png";
 import catagory1 from "../../Assits/catagory1.png";
 import catagory2 from "../../Assits/catagory2.png";
@@ -34,9 +35,11 @@ const Catagory = () => {
                 consequuntur magni voluptatem doloremque.
               </p>
               <div className="">
-                <button className="btn bg-gray-500 text-white w-full">
-                  all
-                </button>
+                <Link to={`/allProduckt/${"Good"}`}>
+                  <button className="btn bg-gray-500 text-white w-full">
+                    all
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -63,9 +66,11 @@ const Catagory = () => {
                 consequuntur magni voluptatem doloremque.
               </p>
               <div className="">
-                <button className="btn bg-gray-500 text-white w-full">
-                  all
-                </button>
+                <Link to={`/allProduckt/${"Mediam"}`}>
+                  <button className="btn bg-gray-500 text-white w-full">
+                    all
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -92,9 +97,11 @@ const Catagory = () => {
                 consequuntur magni voluptatem doloremque.
               </p>
               <div className="">
-                <button className="btn bg-gray-500 text-white w-full">
-                  all
-                </button>
+                <Link to={`/allProduckt/${"Old"}`}>
+                  <button className="btn bg-gray-500 text-white w-full">
+                    all
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
