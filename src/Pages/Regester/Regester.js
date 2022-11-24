@@ -2,11 +2,11 @@ import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvaider/AuthProvaider";
-import { useDbuser } from "../../Hooks/authHooke";
 
 const Regester = () => {
   const { regester, logout, updateregesterUser } = useContext(AuthContext);
   const [loging, setLoding] = useState(false);
+
   const navigate = useNavigate();
 
   const {
@@ -42,6 +42,7 @@ const Regester = () => {
                   photo: imgdata.data.display_url,
                   roll: data.roll,
                   email: data.email,
+                  varify: false,
                 };
                 console.log(dbUser);
                 fetch(`http://localhost:5000/users?email=${data.email}`, {
