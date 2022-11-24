@@ -1,16 +1,55 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
+import { app } from "../Firebade/Firebase.config";
 export const AuthContext = createContext();
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 const AuthProvaider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [dbUser, setDbUser] = useState(null);
   const [loder, setLoder] = useState(true);
-
+  //regestation email and password
+  const regester = (email, password) => {
+    setLoder(true);
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+  const loginWithEmail = (email, password) => {
+    setLoder(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+  const loginWithGoogle = () => {
+    return signInWithPopup(auth, provider);
+  };
+  const updateregesterUser = (userInfo) => {
+    return updateProfile(auth.currentUser, userInfo);
+  };
+  const logout = () => {
+    return signOut(auth);
+  };
+  useEffect(() => {
+    const unsuscriber = onAuthStateChanged(auth, (currentUser) => {
+      setLoder(false);
+      setUser(currentUser);
+    });
+    return () => unsuscriber();
+  }, []);
   const allInfo = {
     user,
-    dbUser,
     loder,
-    setDbUser,
+    logout,
     setLoder,
+    regester,
+    loginWithEmail,
+    loginWithGoogle,
+    updateregesterUser,
   };
   return (
     <div>
