@@ -7,7 +7,11 @@ const Catagory = () => {
   const [loder, setLoder] = useState(false);
   useEffect(() => {
     setLoder(true);
-    fetch("http://localhost:5000/allCatagory")
+    fetch("http://localhost:5000/allCatagory", {
+      headers: {
+        authorization: `brr ${localStorage.getItem("token")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         setCatagorydata(data);

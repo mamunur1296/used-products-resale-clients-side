@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvaider/AuthProvaider";
 
 const Regester = () => {
-  const { regester, logout, updateregesterUser } = useContext(AuthContext);
+  const { user, regester, logout, updateregesterUser } =
+    useContext(AuthContext);
   const [loging, setLoding] = useState(false);
 
   const navigate = useNavigate();
@@ -39,13 +40,13 @@ const Regester = () => {
                 console.log("ragistercomplite");
                 const dbUser = {
                   name: data.firstName + " " + data.lastName,
-                  photo: imgdata.data.display_url,
+                  photo: user?.photoURL,
                   roll: data.roll,
                   email: data.email,
                   varify: false,
                 };
                 console.log(dbUser);
-                fetch(`http://localhost:5000/users?email=${data.email}`, {
+                fetch(`http://localhost:5000/users`, {
                   method: "POST",
                   headers: {
                     "content-type": "application/json",

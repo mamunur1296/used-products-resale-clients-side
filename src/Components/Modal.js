@@ -30,7 +30,17 @@ const Modal = ({ isOpen }) => {
       customarphon: data.customarphon,
       customaraddress: data.customaraddress,
     };
-    console.log(customarInfo);
+    fetch("http://localhost:5000/customardetails", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(customarInfo),
+    })
+      .then((res) => res.json())
+      .then((customardata) => {
+        console.log(customardata);
+      });
   };
   return (
     <div>

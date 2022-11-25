@@ -25,12 +25,15 @@ const AuthProvaider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
   const loginWithGoogle = () => {
+    setLoder(true);
     return signInWithPopup(auth, provider);
   };
   const updateregesterUser = (userInfo) => {
+    setLoder(true);
     return updateProfile(auth.currentUser, userInfo);
   };
   const logout = () => {
+    localStorage.removeItem("token");
     return signOut(auth);
   };
   useEffect(() => {

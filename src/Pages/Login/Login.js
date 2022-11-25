@@ -1,10 +1,15 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvaider/AuthProvaider";
 
 const Login = () => {
   const { user, loginWithEmail, loginWithGoogle } = useContext(AuthContext);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location?.state?.from?.pathname || "/";
+
   const {
     handleSubmit,
     register,
@@ -15,6 +20,15 @@ const Login = () => {
   const handalLogin = (data) => {
     loginWithEmail(data.email, data.password)
       .then((logindata) => {
+        fetch(`http://localhost:5000/users?email=${data.email}`, {
+          method: "get",
+        })
+          .then((res) => res.json())
+          .then((postdata) => {
+            localStorage.setItem("token", postdata?.token);
+
+            navigate(from, { replace: true });
+          });
         console.log(logindata);
       })
       .then((err) => console.log(err));
@@ -22,7 +36,15 @@ const Login = () => {
   const handalGoogle = () => {
     loginWithGoogle()
       .then((gogledata) => {
-        console.log(gogledata);
+        fetch(`http://localhost:5000/users?email=${user?.email}`, {
+          method: "POST",
+        })
+          .then((res) => res.json())
+          .then((postdata) => {
+            localStorage.setItem("token", postdata?.token);
+
+            navigate(from, { replace: true });
+          });
       })
       .then((err) => console.log(err));
   };
