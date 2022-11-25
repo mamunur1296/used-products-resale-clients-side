@@ -1,6 +1,23 @@
-import React from "react";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../../AuthProvaider/AuthProvaider";
+import MyorderRow from "./MyorderRow";
 
 const MyOrder = () => {
+  const { user } = useContext(AuthContext);
+  const [userdata, setuserData] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/usersbookings?email=${user?.email}`, {
+        headers: {
+          authorization: `brr ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        setuserData(res.data);
+      });
+  }, []);
+
   return (
     <div>
       <div className="overflow-x-auto w-full">
@@ -14,31 +31,9 @@ const MyOrder = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <div className="flex items-center space-x-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img
-                        src="/tailwind-css-component-profile-2@56w.png"
-                        alt="Avatar Tailwind CSS Component"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                Zemlak, Daniel and Leannon
-                <br />
-                <span className="badge badge-ghost badge-sm">
-                  Desktop Support Technician
-                </span>
-              </td>
-              <td>Purple</td>
-              <th>
-                <button className="btn btn-ghost btn-xs">details</button>
-              </th>
-            </tr>
+            {userdata?.map((myorder) => (
+              <MyorderRow key={myorder._id} myorder={myorder}></MyorderRow>
+            ))}
           </tbody>
         </table>
       </div>

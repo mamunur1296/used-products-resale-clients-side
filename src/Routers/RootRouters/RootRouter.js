@@ -4,6 +4,8 @@ import AddProjuct from "../../Pages/AddProduckt/AddProjuct";
 import Allproduckt from "../../Pages/Allcatproduckt/Allproduckt";
 import SengleCatagory from "../../Pages/Allcatproduckt/SengleCatagory";
 import Dasbord from "../../Pages/Dasbord/Dasbord";
+import MuProduckt from "../../Pages/Dasbord/Sellar/MuProduckt";
+import MyBuirs from "../../Pages/Dasbord/Sellar/MyBuirs";
 import MyOrder from "../../Pages/Dasbord/User/MyOrder";
 import MyWishlest from "../../Pages/Dasbord/User/MyWishlest";
 import Home from "../../Pages/Home/Home";
@@ -32,10 +34,7 @@ export const router = createBrowserRouter([
         path: "/regester",
         element: <Regester></Regester>,
       },
-      {
-        path: "/post",
-        element: <AddProjuct></AddProjuct>,
-      },
+
       {
         path: "/dasbord",
         element: (
@@ -46,11 +45,27 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "/dasbord/myorderpage",
-            element: <MyOrder></MyOrder>,
+            element: (
+              <PrivateRoure>
+                <MyOrder></MyOrder>
+              </PrivateRoure>
+            ),
           },
           {
             path: "/dasbord/mywishlist",
             element: <MyWishlest></MyWishlest>,
+          },
+          {
+            path: "/dasbord/addproduckt",
+            element: <AddProjuct></AddProjuct>,
+          },
+          {
+            path: "/dasbord/myproducts",
+            element: <MuProduckt></MuProduckt>,
+          },
+          {
+            path: "/dasbord/mybuers",
+            element: <MyBuirs></MyBuirs>,
           },
         ],
       },

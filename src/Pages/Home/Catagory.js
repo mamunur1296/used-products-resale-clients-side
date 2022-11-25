@@ -28,7 +28,7 @@ const Catagory = () => {
           <h2 className="text-5xl">All Catagories</h2>
         </div>
         <div className="grid gap-5 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full">
-          {catagorydata.map((catagory) => (
+          {catagorydata?.map((catagory) => (
             <SingleCatagory
               key={catagory._id}
               catagory={catagory}

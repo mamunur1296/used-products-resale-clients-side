@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
+import { AuthContext } from "../../AuthProvaider/AuthProvaider";
 
 const Dasbord = () => {
+  const { user } = useContext(AuthContext);
+  const [dbuser, setDbuser] = useState([]);
+  console.log(dbuser?.email);
+  const [userloder, setUserloder] = useState(true);
+  useEffect(() => {
+    fetch(`http://localhost:5000/loginUser?email=${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setDbuser(data);
+        setUserloder(false);
+      });
+  }, [user?.email]);
+
   return (
     <div className="w-11/12 mx-auto  bg-base-300">
       <div className="drawer ">
@@ -28,11 +43,26 @@ const Dasbord = () => {
             <div className="flex-1 px-2 mx-2"> My Dashbord</div>
             <div className="flex-none hidden lg:block">
               <ul className="menu menu-horizontal">
+                {dbuser?.roll === "user" ? (
+                  <>
+                    <li>
+                      <Link to="/dasbord/myorderpage">My Order</Link>
+                    </li>
+                    <li>
+                      <Link to="/dasbord/mywishlist">My wishlest</Link>
+                    </li>
+                  </>
+                ) : (
+                  <></>
+                )}
                 <li>
-                  <Link to="/dasbord/myorderpage">My Order</Link>
+                  <Link to="/dasbord/addproduckt">Add A product</Link>
                 </li>
                 <li>
-                  <Link to="/dasbord/mywishlist">My wishlest</Link>
+                  <Link to="/dasbord/myproducts">My Products</Link>
+                </li>
+                <li>
+                  <Link to="/dasbord/mybuers">My buyers</Link>
                 </li>
               </ul>
             </div>

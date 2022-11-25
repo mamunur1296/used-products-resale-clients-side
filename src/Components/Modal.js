@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../AuthProvaider/AuthProvaider";
 
 const Modal = ({ isOpen }) => {
+  const { user } = useContext(AuthContext);
+  const [loding, setloding] = useState(false);
   const {
     handleSubmit,
     register,
@@ -25,10 +28,25 @@ const Modal = ({ isOpen }) => {
     salarsimg,
   } = isOpen;
   const handalModaldata = (data) => {
+    setloding(true);
     const customarInfo = {
-      ...isOpen,
+      img,
+      title,
+      price,
+      location,
+      resalesPrice,
+      usedtime,
+      phon,
+      discription,
+      codition,
+      catagory,
+      selaremail,
+      salarname,
+      posttime,
+      salarsimg,
       customarphon: data.customarphon,
       customaraddress: data.customaraddress,
+      customaremail: user?.email,
     };
     fetch("http://localhost:5000/customardetails", {
       method: "POST",
@@ -38,8 +56,9 @@ const Modal = ({ isOpen }) => {
       body: JSON.stringify(customarInfo),
     })
       .then((res) => res.json())
-      .then((customardata) => {
-        console.log(customardata);
+      .then((data) => {
+        setloding(false);
+        console.log(data);
       });
   };
   return (
@@ -95,9 +114,10 @@ const Modal = ({ isOpen }) => {
             </div>
             <button
               type="submit"
+              htmlFor="producktConfirmModal"
               className="text-white text-3xl  w-full mt-5 bg-gray-800 hover:bg-gray-700  font-medium rounded-full text-sm px-5 py-2 text-center  "
             >
-              Submit
+              {loding ? "Loding..." : "Submit"}
             </button>
           </form>
           <label
