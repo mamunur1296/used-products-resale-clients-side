@@ -3,6 +3,9 @@ import MainLayout from "../../Layout/Main/MainLayout";
 import AddProjuct from "../../Pages/AddProduckt/AddProjuct";
 import Allproduckt from "../../Pages/Allcatproduckt/Allproduckt";
 import SengleCatagory from "../../Pages/Allcatproduckt/SengleCatagory";
+import ALLbuyers from "../../Pages/Dasbord/Admin/ALLbuyers";
+import AllSellers from "../../Pages/Dasbord/Admin/AllSellers";
+import ReportedItems from "../../Pages/Dasbord/Admin/ReportedItems";
 import Dasbord from "../../Pages/Dasbord/Dasbord";
 import MuProduckt from "../../Pages/Dasbord/Sellar/MuProduckt";
 import MyBuirs from "../../Pages/Dasbord/Sellar/MyBuirs";
@@ -53,7 +56,11 @@ export const router = createBrowserRouter([
           },
           {
             path: "/dasbord/mywishlist",
-            element: <MyWishlest></MyWishlest>,
+            element: (
+              <PrivateRoure>
+                <MyWishlest></MyWishlest>
+              </PrivateRoure>
+            ),
           },
           {
             path: "/dasbord/addproduckt",
@@ -66,6 +73,18 @@ export const router = createBrowserRouter([
           {
             path: "/dasbord/mybuers",
             element: <MyBuirs></MyBuirs>,
+          },
+          {
+            path: "/dasbord/allselars",
+            element: <AllSellers></AllSellers>,
+          },
+          {
+            path: "/dasbord/allbuyers",
+            element: <ALLbuyers></ALLbuyers>,
+          },
+          {
+            path: "/dasbord/reporteditems",
+            element: <ReportedItems></ReportedItems>,
           },
         ],
       },

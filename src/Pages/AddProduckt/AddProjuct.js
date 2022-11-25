@@ -49,6 +49,7 @@ const AddProjuct = () => {
           method: "POST",
           headers: {
             "content-type": "application/json",
+            authorization: `brr ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify(postinfo),
         })

@@ -55,15 +55,36 @@ const Dasbord = () => {
                 ) : (
                   <></>
                 )}
-                <li>
-                  <Link to="/dasbord/addproduckt">Add A product</Link>
-                </li>
-                <li>
-                  <Link to="/dasbord/myproducts">My Products</Link>
-                </li>
-                <li>
-                  <Link to="/dasbord/mybuers">My buyers</Link>
-                </li>
+                {dbuser?.roll === "Seller" ? (
+                  <>
+                    <li>
+                      <Link to="/dasbord/addproduckt">Add A product</Link>
+                    </li>
+                    <li>
+                      <Link to="/dasbord/myproducts">My Products</Link>
+                    </li>
+                    <li>
+                      <Link to="/dasbord/mybuers">My buyers</Link>
+                    </li>
+                  </>
+                ) : (
+                  <></>
+                )}
+                {dbuser?.roll === "admin" ? (
+                  <>
+                    <li>
+                      <Link to="/dasbord/allselars">All Sellers</Link>
+                    </li>
+                    <li>
+                      <Link to="/dasbord/allbuyers">All Buyers</Link>
+                    </li>
+                    <li>
+                      <Link to="/dasbord/reporteditems">Reported Items</Link>
+                    </li>
+                  </>
+                ) : (
+                  <></>
+                )}
               </ul>
             </div>
           </div>

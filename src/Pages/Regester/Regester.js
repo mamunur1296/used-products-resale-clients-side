@@ -40,7 +40,7 @@ const Regester = () => {
                 console.log("ragistercomplite");
                 const dbUser = {
                   name: data.firstName + " " + data.lastName,
-                  photo: user?.photoURL,
+                  photo: imgdata.data.display_url,
                   roll: data.roll,
                   email: data.email,
                   varify: false,

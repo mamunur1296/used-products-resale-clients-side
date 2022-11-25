@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../AuthProvaider/AuthProvaider";
-import Myproducktcall from "./Myproducktcall";
+import AllbuyersCall from "./AllbuyersCall";
 
-const MuProduckt = () => {
+const ALLbuyers = () => {
   const { user } = useContext(AuthContext);
-  const [myproduckt, setMyproduckt] = useState([]);
-  console.log(myproduckt);
+  const [buyers, setBuyers] = useState([]);
+  console.log(buyers);
   const [userloder, setUserloder] = useState(true);
   useEffect(() => {
-    fetch(`http://localhost:5000/mysalespost?email=${user?.email}`, {
+    fetch(`http://localhost:5000/allbuyers?email=${user?.email}`, {
       headers: {
         authorization: `brr ${localStorage.getItem("token")}`,
       },
@@ -16,7 +16,7 @@ const MuProduckt = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setMyproduckt(data);
+        setBuyers(data);
         setUserloder(false);
       });
   }, [user?.email]);
@@ -25,6 +25,7 @@ const MuProduckt = () => {
   }
   return (
     <div>
+      {" "}
       <div className="overflow-x-auto w-full">
         <table className="table w-full">
           <thead>
@@ -38,8 +39,8 @@ const MuProduckt = () => {
             </tr>
           </thead>
           <tbody>
-            {myproduckt?.map((pro) => (
-              <Myproducktcall key={pro._id} pro={pro}></Myproducktcall>
+            {buyers?.map((buyer) => (
+              <AllbuyersCall key={buyer._id} buyer={buyer}></AllbuyersCall>
             ))}
           </tbody>
         </table>
@@ -48,4 +49,4 @@ const MuProduckt = () => {
   );
 };
 
-export default MuProduckt;
+export default ALLbuyers;
