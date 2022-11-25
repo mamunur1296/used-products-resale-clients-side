@@ -3,6 +3,7 @@ import Advitairsment from "./Advitairsment";
 import Catagory from "./Catagory";
 
 import Headerbanar from "./Headerbanar";
+import MyChoice from "./MyChoice";
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       <Headerbanar></Headerbanar>
       <Catagory></Catagory>
       <Advitairsment></Advitairsment>
+      <MyChoice></MyChoice>
     </div>
   );
 };

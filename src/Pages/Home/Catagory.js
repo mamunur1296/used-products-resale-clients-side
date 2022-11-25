@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import catagory from "../../Assits/catagory.png";
-import catagory1 from "../../Assits/catagory1.png";
-import catagory2 from "../../Assits/catagory2.png";
+
 import SingleCatagory from "./SingleCatagory";
 
 const Catagory = () => {
   const [catagorydata, setCatagorydata] = useState([]);
+  const [loder, setLoder] = useState(false);
   useEffect(() => {
+    setLoder(true);
     fetch("http://localhost:5000/allCatagory")
       .then((res) => res.json())
       .then((data) => {
         setCatagorydata(data);
+        setLoder(false);
       });
   }, []);
+  if (loder) {
+    return <p>Lodeing ...</p>;
+  }
   return (
     <div>
       <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">

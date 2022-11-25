@@ -3,7 +3,7 @@ import MainLayout from "../../Layout/Main/MainLayout";
 import AddProjuct from "../../Pages/AddProduckt/AddProjuct";
 import Allproduckt from "../../Pages/Allcatproduckt/Allproduckt";
 import SengleCatagory from "../../Pages/Allcatproduckt/SengleCatagory";
-import Catagory from "../../Pages/Home/Catagory";
+
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Regester from "../../Pages/Regester/Regester";
