@@ -1,7 +1,23 @@
 import React from "react";
 
-const Myproducktcall = ({ pro }) => {
-  const { img, title, price } = pro;
+const Myproducktcall = ({ pro, refetch }) => {
+  const { img, title, _id, price } = pro;
+  const handalDelet = (id) => {
+    const isAcjest = window.confirm("are you sure ");
+    if (isAcjest) {
+      fetch(`http://localhost:5000/myproduckt/${id}`, {
+        method: "DELETE",
+        headers: {
+          authorization: `brr ${localStorage.getItem("token")}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          refetch();
+        });
+    }
+  };
   return (
     <>
       <tr>
@@ -19,8 +35,11 @@ const Myproducktcall = ({ pro }) => {
         </td>
         <td>{price}</td>
         <th>
-          <button className="btn btn-ghost text-white bg-gray-400 btn-xs">
-            Pay Now
+          <button
+            onClick={() => handalDelet(_id)}
+            className="btn btn-ghost text-white bg-gray-400 btn-xs"
+          >
+            DELETE
           </button>
         </th>
         <th>

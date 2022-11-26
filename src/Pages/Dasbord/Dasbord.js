@@ -16,6 +16,9 @@ const Dasbord = () => {
         setUserloder(false);
       });
   }, [user?.email]);
+  if (userloder) {
+    return <p>Losing...</p>;
+  }
 
   return (
     <div className="w-11/12 mx-auto  bg-base-300">
@@ -77,6 +80,9 @@ const Dasbord = () => {
                     </li>
                     <li>
                       <Link to="/dasbord/allbuyers">All Buyers</Link>
+                    </li>
+                    <li>
+                      <Link to="/dasbord/alluser">All User Control</Link>
                     </li>
                     <li>
                       <Link to="/dasbord/reporteditems">Reported Items</Link>

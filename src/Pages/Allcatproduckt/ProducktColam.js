@@ -16,8 +16,9 @@ const ProducktColam = ({ produckt, setIsOpen }) => {
     salarname,
     posttime,
     salarsimg,
+    varify,
   } = produckt;
-
+  console.log(produckt);
   return (
     <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
       <img src={img} className="object-cover w-full h-64" alt="" />
@@ -37,7 +38,7 @@ const ProducktColam = ({ produckt, setIsOpen }) => {
                 </p>
               </div>
               <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                blumark
+                {varify ? "varify" : "unvarify"}
               </div>
             </div>
           </div>

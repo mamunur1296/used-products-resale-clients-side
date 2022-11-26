@@ -1,21 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../../AuthProvaider/AuthProvaider";
-import AllselarColl from "./AllselarColl";
+import AllUserColl from "./AllUserColl";
 
-const AllSellers = () => {
-  const { user } = useContext(AuthContext);
+const AllUserControl = () => {
   const { data, isLoading, refetch } = useQuery({
-    queryKey: ["allbsaller"],
+    queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch(
-        `http://localhost:5000/allbsaller?email=${user?.email}`,
-        {
-          headers: {
-            authorization: `brr ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+      const res = await fetch("http://localhost:5000/alluerts", {
+        headers: {
+          authorization: `brr ${localStorage.getItem("token")}`,
+        },
+      });
       const data = res.json();
       return data;
     },
@@ -39,12 +33,12 @@ const AllSellers = () => {
             </tr>
           </thead>
           <tbody>
-            {data?.map((seller) => (
-              <AllselarColl
-                key={seller._id}
+            {data?.map((user) => (
+              <AllUserColl
+                key={user._id}
                 refetch={refetch}
-                seller={seller}
-              ></AllselarColl>
+                user={user}
+              ></AllUserColl>
             ))}
           </tbody>
         </table>
@@ -53,4 +47,4 @@ const AllSellers = () => {
   );
 };
 
-export default AllSellers;
+export default AllUserControl;

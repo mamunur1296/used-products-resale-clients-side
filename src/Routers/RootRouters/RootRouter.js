@@ -1,11 +1,17 @@
 import { createBrowserRouter } from "react-router-dom";
+import Error from "../../Components/Error";
 import MainLayout from "../../Layout/Main/MainLayout";
 import AddProjuct from "../../Pages/AddProduckt/AddProjuct";
 import Allproduckt from "../../Pages/Allcatproduckt/Allproduckt";
 import SengleCatagory from "../../Pages/Allcatproduckt/SengleCatagory";
 import Blog from "../../Pages/Blog/Blog";
+import Blog1 from "../../Pages/Blog/BlogItem/Blog1";
+import Blog2 from "../../Pages/Blog/BlogItem/Blog2";
+import Blog3 from "../../Pages/Blog/BlogItem/Blog3";
+import Blog4 from "../../Pages/Blog/BlogItem/Blog4";
 import ALLbuyers from "../../Pages/Dasbord/Admin/ALLbuyers";
 import AllSellers from "../../Pages/Dasbord/Admin/AllSellers";
+import AllUserControl from "../../Pages/Dasbord/Admin/AllUserControl";
 import ReportedItems from "../../Pages/Dasbord/Admin/ReportedItems";
 import Dasbord from "../../Pages/Dasbord/Dasbord";
 import MuProduckt from "../../Pages/Dasbord/Sellar/MuProduckt";
@@ -21,6 +27,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: "/",
@@ -37,6 +44,24 @@ export const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog></Blog>,
+        children: [
+          {
+            path: "/blog",
+            element: <Blog1></Blog1>,
+          },
+          {
+            path: "/blog/blog2",
+            element: <Blog2></Blog2>,
+          },
+          {
+            path: "/blog/blog3",
+            element: <Blog3></Blog3>,
+          },
+          {
+            path: "/blog/blog4",
+            element: <Blog4></Blog4>,
+          },
+        ],
       },
       {
         path: "/regester",
@@ -45,6 +70,7 @@ export const router = createBrowserRouter([
 
       {
         path: "/dasbord",
+        errorElement: <Error></Error>,
         element: (
           <PrivateRoure>
             <Dasbord></Dasbord>
@@ -88,6 +114,10 @@ export const router = createBrowserRouter([
             element: <ALLbuyers></ALLbuyers>,
           },
           {
+            path: "/dasbord/alluser",
+            element: <AllUserControl></AllUserControl>,
+          },
+          {
             path: "/dasbord/reporteditems",
             element: <ReportedItems></ReportedItems>,
           },
@@ -95,6 +125,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/allProduckt",
+        errorElement: <Error></Error>,
         element: (
           <PrivateRoure>
             <Allproduckt></Allproduckt>

@@ -1,28 +1,29 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import React, { useContext } from "react";
 import { AuthContext } from "../../../AuthProvaider/AuthProvaider";
 import AllbuyersCall from "./AllbuyersCall";
 
 const ALLbuyers = () => {
   const { user } = useContext(AuthContext);
-  const [buyers, setBuyers] = useState([]);
-  console.log(buyers);
-  const [userloder, setUserloder] = useState(true);
-  useEffect(() => {
-    fetch(`http://localhost:5000/allbuyers?email=${user?.email}`, {
-      headers: {
-        authorization: `brr ${localStorage.getItem("token")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setBuyers(data);
-        setUserloder(false);
-      });
-  }, [user?.email]);
-  if (userloder) {
-    return <p>Loding...</p>;
+  const { data, isLoading, refetch } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/allbuyers?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `brr ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      const data = res.json();
+      return data;
+    },
+  });
+  if (isLoading) {
+    return <p>Loding ....</p>;
   }
+
   return (
     <div>
       <div className="overflow-x-auto w-full">
@@ -38,8 +39,12 @@ const ALLbuyers = () => {
             </tr>
           </thead>
           <tbody>
-            {buyers?.map((buyer) => (
-              <AllbuyersCall key={buyer._id} buyer={buyer}></AllbuyersCall>
+            {data?.map((buyer) => (
+              <AllbuyersCall
+                key={buyer._id}
+                refetch={refetch}
+                buyer={buyer}
+              ></AllbuyersCall>
             ))}
           </tbody>
         </table>

@@ -1,7 +1,7 @@
 import React from "react";
 
-const AllselarColl = ({ seller, refetch }) => {
-  const { name, photo, varify, roll, email, _id } = seller;
+const AllUserColl = ({ user, refetch }) => {
+  const { name, photo, roll, email, _id } = user;
   const handalUserDelete = (id) => {
     const isAcjest = window.confirm("are you sure ");
     if (isAcjest) {
@@ -17,19 +17,6 @@ const AllselarColl = ({ seller, refetch }) => {
           refetch();
         });
     }
-  };
-  const handalVarifi = (id) => {
-    fetch(`http://localhost:5000/salarVarify/${id}`, {
-      method: "PUT",
-      headers: {
-        authorization: `brr ${localStorage.getItem("token")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        refetch();
-      });
   };
   return (
     <>
@@ -57,11 +44,8 @@ const AllselarColl = ({ seller, refetch }) => {
           </button>
         </th>
         <th>
-          <button
-            onClick={() => handalVarifi(_id)}
-            className="btn btn-ghost text-white bg-gray-400 btn-xs"
-          >
-            {varify ? "verified" : "unverified "}
+          <button className="btn btn-ghost text-white bg-gray-400 btn-xs">
+            advartice
           </button>
         </th>
       </tr>
@@ -69,4 +53,4 @@ const AllselarColl = ({ seller, refetch }) => {
   );
 };
 
-export default AllselarColl;
+export default AllUserColl;

@@ -59,25 +59,48 @@ const Nave = () => {
                   Home
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/login"
-                  className="block py-2 pl-3 pr-4 text-black hover:text-deep-purple-accent-400  rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                  aria-current="page"
-                >
-                  Login
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  to="/dasbord"
-                  className="block py-2 pl-3 pr-4 text-black hover:text-deep-purple-accent-400  rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                  aria-current="page"
-                >
-                  dasbord
-                </Link>
-              </li>
+              {user ? (
+                <>
+                  <li>
+                    <Link
+                      to="/dasbord"
+                      className="block py-2 pl-3 pr-4 text-black hover:text-deep-purple-accent-400  rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                      aria-current="page"
+                    >
+                      dasbord
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="block py-2 pl-3 pr-4 text-black hover:text-deep-purple-accent-400  rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                      aria-current="page"
+                    >
+                      {user?.displayName}
+                    </Link>
+                  </li>
+                  <li>
+                    <button
+                      className="block py-2 pl-3 pr-4 text-black hover:text-deep-purple-accent-400  rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                      aria-current="page"
+                      onClick={handalLogout}
+                    >
+                      Log Out
+                    </button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <Link
+                      to="/login"
+                      className="block py-2 pl-3 pr-4 text-black hover:text-deep-purple-accent-400  rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                      aria-current="page"
+                    >
+                      Login
+                    </Link>
+                  </li>
+                </>
+              )}
               <li>
                 <Link
                   to="/blog"
@@ -85,23 +108,6 @@ const Nave = () => {
                   aria-current="page"
                 >
                   Blog
-                </Link>
-              </li>
-              <li>
-                <button
-                  className="block py-2 pl-3 pr-4 text-black hover:text-deep-purple-accent-400  rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                  aria-current="page"
-                  onClick={handalLogout}
-                >
-                  Log Out
-                </button>
-              </li>
-              <li>
-                <Link
-                  className="block py-2 pl-3 pr-4 text-black hover:text-deep-purple-accent-400  rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                  aria-current="page"
-                >
-                  {user?.displayName}
                 </Link>
               </li>
             </ul>

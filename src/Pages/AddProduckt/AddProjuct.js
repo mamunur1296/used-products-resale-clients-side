@@ -1,12 +1,34 @@
+import { useQuery } from "@tanstack/react-query";
 import moment from "moment/moment";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvaider/AuthProvaider";
 
 const AddProjuct = () => {
   const { user } = useContext(AuthContext);
   const [loding, setLoding] = useState(false);
-
+  const navigate = useNavigate();
+  const {
+    data: action,
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["singleUser"],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/loginUser?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `brr ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      const data = res.json();
+      return data;
+    },
+  });
+  console.log();
   const {
     handleSubmit,
     register,
@@ -41,7 +63,10 @@ const AddProjuct = () => {
           salarname: user?.displayName,
           selaremail: user?.email,
           salarsimg: user?.photoURL,
+          blutick: data.varify,
+          varify: action.varify,
         };
+        console.log(postinfo);
         const allcatagory = {
           catagory: data.catagory,
         };
@@ -55,8 +80,8 @@ const AddProjuct = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             setLoding(false);
+            navigate("/dasbord/myproducts");
           });
       })
       .catch((err) => {

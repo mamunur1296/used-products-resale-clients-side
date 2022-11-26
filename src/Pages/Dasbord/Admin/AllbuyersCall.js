@@ -1,7 +1,23 @@
 import React from "react";
 
-const AllbuyersCall = ({ buyer }) => {
-  const { name, photo, roll, email } = buyer;
+const AllbuyersCall = ({ buyer, refetch }) => {
+  const { name, photo, roll, email, _id } = buyer;
+  const handalBuiyerDelete = (id) => {
+    const isAcjest = window.confirm("are you sure ");
+    if (isAcjest) {
+      fetch(`http://localhost:5000/userDeleit/${id}`, {
+        method: "DELETE",
+        headers: {
+          authorization: `brr ${localStorage.getItem("token")}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          refetch();
+        });
+    }
+  };
   return (
     <>
       <tr>
@@ -20,8 +36,11 @@ const AllbuyersCall = ({ buyer }) => {
         <td>{email}</td>
         <th>{roll}</th>
         <th>
-          <button className="btn btn-ghost text-white bg-gray-400 btn-xs">
-            delet
+          <button
+            onClick={() => handalBuiyerDelete(_id)}
+            className="btn btn-ghost text-white bg-gray-400 btn-xs"
+          >
+            DELETE
           </button>
         </th>
         <th>

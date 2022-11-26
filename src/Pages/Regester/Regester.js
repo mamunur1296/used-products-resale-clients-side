@@ -118,7 +118,7 @@ const Regester = () => {
             className="block mb-2 text-sm font-medium text-gray-900 "
             {...register("roll")}
           >
-            <option value="user">user</option>
+            <option value="user">buyers</option>
             <option value="Seller">Seller</option>
           </select>
         </div>
