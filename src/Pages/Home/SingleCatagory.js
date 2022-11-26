@@ -26,7 +26,7 @@ const SingleCatagory = ({ catagory }) => {
             consequuntur magni voluptatem doloremque.
           </p>
           <div className="">
-            <Link to={`/allProduckt/${catagory.catagory}`}>
+            <Link to={`/allProduckt/${catagory._id}`}>
               <button className="btn bg-gray-500 text-white w-full">all</button>
             </Link>
           </div>

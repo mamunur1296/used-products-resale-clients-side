@@ -3,6 +3,7 @@ import MainLayout from "../../Layout/Main/MainLayout";
 import AddProjuct from "../../Pages/AddProduckt/AddProjuct";
 import Allproduckt from "../../Pages/Allcatproduckt/Allproduckt";
 import SengleCatagory from "../../Pages/Allcatproduckt/SengleCatagory";
+import Blog from "../../Pages/Blog/Blog";
 import ALLbuyers from "../../Pages/Dasbord/Admin/ALLbuyers";
 import AllSellers from "../../Pages/Dasbord/Admin/AllSellers";
 import ReportedItems from "../../Pages/Dasbord/Admin/ReportedItems";
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+      {
+        path: "/blog",
+        element: <Blog></Blog>,
       },
       {
         path: "/regester",
@@ -99,7 +104,7 @@ export const router = createBrowserRouter([
           {
             path: "/allProduckt/:id",
             loader: ({ params }) =>
-              fetch(`http://localhost:5000/allproduckt?catagory=${params.id}`),
+              fetch(`http://localhost:5000/allproduckt?id=${params.id}`),
 
             element: (
               <PrivateRoure>

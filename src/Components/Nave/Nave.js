@@ -79,6 +79,15 @@ const Nave = () => {
                 </Link>
               </li>
               <li>
+                <Link
+                  to="/blog"
+                  className="block py-2 pl-3 pr-4 text-black hover:text-deep-purple-accent-400  rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                  aria-current="page"
+                >
+                  Blog
+                </Link>
+              </li>
+              <li>
                 <button
                   className="block py-2 pl-3 pr-4 text-black hover:text-deep-purple-accent-400  rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
                   aria-current="page"
