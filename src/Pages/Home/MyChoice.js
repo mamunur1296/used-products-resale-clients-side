@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { AuthContext } from "../../AuthProvaider/AuthProvaider";
+import Loder from "../../Components/Loder/Loder";
 import MyChoiceRow from "./MyChoiceRow";
 
 const MyChoice = () => {
@@ -14,7 +15,7 @@ const MyChoice = () => {
   });
   console.log(data);
   if (isLoading) {
-    return <p>Loding ....</p>;
+    return <Loder></Loder>;
   }
   return (
     <div>

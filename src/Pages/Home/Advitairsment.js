@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Link } from "react-router-dom";
+import Loder from "../../Components/Loder/Loder";
 import AddColl from "./AddColl";
 
 const Advitairsment = () => {
@@ -17,7 +18,7 @@ const Advitairsment = () => {
     },
   });
   if (isLoading) {
-    return <p>Loding ....</p>;
+    return <Loder></Loder>;
   }
   return (
     <div>

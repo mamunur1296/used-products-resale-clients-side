@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import Loder from "../../Components/Loder/Loder";
+import useTitle from "../../Hooks/useTitle";
 
 import SingleCatagory from "./SingleCatagory";
 
 const Catagory = () => {
+  useTitle("Catagory page ");
   const [catagorydata, setCatagorydata] = useState([]);
   const [loder, setLoder] = useState(false);
   useEffect(() => {
@@ -19,7 +22,7 @@ const Catagory = () => {
       });
   }, []);
   if (loder) {
-    return <p>Lodeing ...</p>;
+    return <Loder></Loder>;
   }
   return (
     <div className="bg-orange-100">

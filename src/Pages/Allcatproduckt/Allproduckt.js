@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
+import Loder from "../../Components/Loder/Loder";
+import useTitle from "../../Hooks/useTitle";
 import SingleCatagory from "../Home/SingleCatagory";
 import CatagoryUl from "./CatagoryUl";
 
@@ -19,8 +21,9 @@ const Allproduckt = () => {
         setLoder(false);
       });
   }, []);
+  useTitle("Catagory route");
   if (loder) {
-    return <p>Lodeing ...</p>;
+    return <Loder></Loder>;
   }
   return (
     <div>

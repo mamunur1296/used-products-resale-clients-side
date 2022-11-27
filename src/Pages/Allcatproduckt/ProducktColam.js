@@ -1,4 +1,9 @@
-import React, { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import React, { useContext, useEffect } from "react";
+import { FaRegCheckCircle, FaRegCircle } from "react-icons/fa";
+import { toast } from "react-toastify";
+import { AuthContext } from "../../AuthProvaider/AuthProvaider";
+import Loder from "../../Components/Loder/Loder";
 
 const ProducktColam = ({ produckt, setIsOpen }) => {
   const {
@@ -21,6 +26,7 @@ const ProducktColam = ({ produckt, setIsOpen }) => {
     salarsimg,
     varify,
   } = produckt;
+
   const handalreport = (id) => {
     fetch(`http://localhost:5000/repostToAdmin/${id}`, {
       method: "POST",
@@ -30,6 +36,7 @@ const ProducktColam = ({ produckt, setIsOpen }) => {
     })
       .then((res) => res.json())
       .then((data) => {
+        toast.success("Report succerrfull");
         console.log(data);
       });
   };
@@ -62,7 +69,19 @@ const ProducktColam = ({ produckt, setIsOpen }) => {
                       </p>
                     </div>
                     <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                      {varify ? "varify" : "unvarify"}
+                      {varify ? (
+                        <>
+                          <small className="text-3xl hover:selection:bg-green-200 p-2 rounded-full text-green-700">
+                            <FaRegCheckCircle></FaRegCheckCircle>
+                          </small>
+                        </>
+                      ) : (
+                        <>
+                          <small className="text-3xl">
+                            <FaRegCircle></FaRegCircle>
+                          </small>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -79,18 +98,22 @@ const ProducktColam = ({ produckt, setIsOpen }) => {
                 Resal Price : ${resalesPrice}
               </p>
               <p className="mb-2 text-gray-700">{discription}</p>
-              <div className="flex align-middle justify-between">
-                <label
-                  onClick={() => setIsOpen(produckt)}
-                  htmlFor="producktConfirmModal"
-                  className="btn"
-                >
-                  Book now
-                </label>
-                <label onClick={() => handalreport(_id)} className="btn  ">
-                  {report ? "Reported" : "Report"}
-                </label>
-              </div>
+
+              <label
+                onClick={() => setIsOpen(produckt)}
+                htmlFor="producktConfirmModal"
+                type="button"
+                class="text-gray-900 w-full hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+              >
+                Book now
+              </label>
+              <button
+                onClick={() => handalreport(_id)}
+                type="button"
+                class="text-gray-900 w-full hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+              >
+                Report
+              </button>
             </div>
           </div>
         </>

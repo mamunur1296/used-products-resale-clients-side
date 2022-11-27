@@ -1,8 +1,12 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { FaRegCheckCircle, FaRegCircle } from "react-icons/fa";
+import { toast } from "react-toastify";
 import { AuthContext } from "../AuthProvaider/AuthProvaider";
+import Login from "../Pages/Login/Login";
+import SmallLoder from "./Loder/SmallLoder";
 
-const Modal = ({ isOpen }) => {
+const Modal = ({ isOpen, ismodalOpen, setIsModalOpen }) => {
   const { user } = useContext(AuthContext);
   const [loding, setloding] = useState(false);
   const {
@@ -20,6 +24,7 @@ const Modal = ({ isOpen }) => {
     resalesPrice,
     usedtime,
     phon,
+    varify,
     discription,
     codition,
     catagory,
@@ -59,8 +64,9 @@ const Modal = ({ isOpen }) => {
     })
       .then((res) => res.json())
       .then((data) => {
+        toast.success("your booking confirm ");
         setloding(false);
-        console.log(data);
+        reset();
       });
   };
   return (
@@ -73,7 +79,7 @@ const Modal = ({ isOpen }) => {
       <div className="modal">
         <div className="modal-box relative">
           <p className="mb-2 text-2xl text-gray-700">Title : {title}</p>
-          <img className="object-cover w-full h-64" src={img} alt="" />
+          <img className="object-cover w-full  h-60" src={img} alt="" />
           <div class="pb-3 sm:pb-4">
             <div class="flex items-center space-x-4">
               <div class="flex-shrink-0">
@@ -87,6 +93,21 @@ const Modal = ({ isOpen }) => {
                   {selaremail}
                 </p>
               </div>
+              <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                {varify ? (
+                  <>
+                    <small className="text-3xl hover:selection:bg-green-200 p-2 rounded-full text-green-700">
+                      <FaRegCheckCircle></FaRegCheckCircle>
+                    </small>
+                  </>
+                ) : (
+                  <>
+                    <small className="text-3xl">
+                      <FaRegCircle></FaRegCircle>
+                    </small>
+                  </>
+                )}
+              </div>
             </div>
           </div>
 
@@ -98,7 +119,7 @@ const Modal = ({ isOpen }) => {
               </label>
               <input
                 type="text"
-                placeholder="Enter your Password"
+                placeholder="Enter Your Phon Numbar"
                 {...register("customarphon", { required: true })}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
               />
@@ -115,21 +136,23 @@ const Modal = ({ isOpen }) => {
               ></textarea>
             </div>
             <button
-              type="submit"
-              htmlFor="producktConfirmModal"
-              className="text-white text-3xl  w-full mt-5 bg-gray-800 hover:bg-gray-700  font-medium rounded-full text-sm px-5 py-2 text-center  "
+              onClick={() => setIsModalOpen(!ismodalOpen)}
+              class="text-gray-900 mt-5 w-full hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
             >
-              {loding ? "Loding..." : "Submit"}
+              <label type="submit" htmlFor="producktConfirmModal">
+                {loding ? (
+                  <>
+                    <SmallLoder></SmallLoder>
+                  </>
+                ) : (
+                  "Submit"
+                )}
+              </label>
             </button>
           </form>
-          <label
-            htmlFor="producktConfirmModal"
-            className="btn btn-sm btn-circle absolute right-2 top-2"
-          >
-            ✕
-          </label>
         </div>
       </div>
+      <label htmlFor="producktConfirmModal"></label>
     </div>
   );
 };

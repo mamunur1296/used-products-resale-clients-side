@@ -58,7 +58,7 @@ const AllselarColl = ({ seller, refetch }) => {
         </th>
         <th>
           <button
-            onClick={() => handalVarifi(_id)}
+            onClick={() => handalVarifi(email)}
             className="btn btn-ghost text-white bg-gray-400 btn-xs"
           >
             {varify ? "verified" : "unverified "}
