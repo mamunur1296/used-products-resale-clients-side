@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Modal from "../../Components/Modal";
@@ -7,15 +6,7 @@ import ProducktColam from "./ProducktColam";
 const SengleCatagory = () => {
   const [isOpen, setIsOpen] = useState({});
   const producktdata = useLoaderData();
-  // const { data } = useQuery({
-  //   queryKey: ["singleUser"],
-  //   queryFn: async () => {
-  //     const res = await fetch("http://localhost:5000/allPayment");
-  //     const data = res.json();
-  //     return data;
-  //   },
-  // });
-  // console.log(producktdata);
+
   return (
     <div>
       <h1>this is sengle catagory</h1>

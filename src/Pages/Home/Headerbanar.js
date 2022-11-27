@@ -1,11 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import banar from "../../Assits/banar.png";
 
 const Headerbanar = () => {
   return (
     <div>
-      <div className="relative">
+      <div className="relative ">
         <img
-          src="https://images.pexels.com/photos/3747463/pexels-photo-3747463.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+          src={banar}
           className="absolute inset-0 object-cover w-full h-full"
           alt=""
         />
@@ -14,19 +16,19 @@ const Headerbanar = () => {
             <div className="flex flex-col items-center justify-between xl:flex-row">
               <div className="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12">
                 <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
-                  The quick, brown fox <br className="hidden md:block" />
-                  jumps over a{" "}
-                  <span className="text-teal-accent-400">lazy dog</span>
+                  The Best Ways to Recycle Old Books
                 </h2>
                 <p className="max-w-xl mb-4 text-base text-gray-400 md:text-lg">
-                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                  accusantium doloremque laudan, totam rem aperiam, eaque ipsa
-                  quae.
+                  If you’re like me, the very idea of “getting rid of a book” is
+                  as woefully impossible as slaying an actual dragon. In the
+                  same vein, the idea of throwing a book away is an absolute
+                  horror. But recycling books and passing knowledge onto someone
+                  else so that they can go on their own literary adventures?
+                  That’s a very different story.
                 </p>
-                <a
-                  href="/"
-                  aria-label=""
-                  className="inline-flex items-center font-semibold tracking-wider transition-colors duration-200 text-teal-accent-400 hover:text-teal-accent-700"
+                <Link
+                  to="/blog"
+                  className="inline-flex text-white items-center font-semibold tracking-wider transition-colors duration-200 text-teal-accent-400 hover:text-teal-accent-700"
                 >
                   Learn more
                   <svg
@@ -36,12 +38,12 @@ const Headerbanar = () => {
                   >
                     <path d="M9.707,5.293l-5-5A1,1,0,0,0,3.293,1.707L7.586,6,3.293,10.293a1,1,0,1,0,1.414,1.414l5-5A1,1,0,0,0,9.707,5.293Z" />
                   </svg>
-                </a>
+                </Link>
               </div>
               <div className="w-full max-w-xl xl:px-8 xl:w-5/12">
-                <div className="bg-white rounded shadow-2xl p-7 sm:p-10">
+                <div className="bg-orange-200 rounded shadow-2xl p-7 sm:p-10">
                   <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
-                    Sign up for updates
+                    CONTACT US
                   </h3>
                   <form>
                     <div className="mb-1 sm:mb-2">
@@ -94,14 +96,21 @@ const Headerbanar = () => {
                     </div>
                     <div className="mt-4 mb-2 sm:mb-4">
                       <button
-                        type="submit"
-                        className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                        type="button"
+                        class="text-gray-900 w-full hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
                       >
                         Subscribe
                       </button>
                     </div>
-                    <p className="text-xs text-gray-600 sm:text-sm">
-                      We respect your privacy. Unsubscribe at any time.
+                    <p className="px-6 text-sm text-center dark:text-gray-400">
+                      Don't have an account yet?
+                      <Link
+                        to="/regester"
+                        className="hover:underline dark:text-violet-400"
+                      >
+                        Sign up
+                      </Link>
+                      .
                     </p>
                   </form>
                 </div>

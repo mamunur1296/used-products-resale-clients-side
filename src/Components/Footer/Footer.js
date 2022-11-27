@@ -1,40 +1,68 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import logo from "../../Assits/favicon.png";
 
 const Footer = () => {
   return (
-    <div>
-      <footer className="p-4 bg-gray-300 sm:p-6 dark:bg-gray-900">
+    <div className="bg-orange-200">
+      <footer className="p-4 w-11/12 mx-auto sm:p-6 dark:bg-gray-900">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
-            <a href="https://flowbite.com/" className="flex items-center">
-              <img
-                src="https://flowbite.com/docs/images/logo.svg"
-                className="mr-3 h-8"
-                alt="FlowBite Logo"
-              />
-              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                Flowbite
+            <Link to="/" className="flex mb-10 items-center">
+              <img src={logo} className="h-6 mr-3 sm:h-9" alt="" />
+              <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+                Recycle Book
               </span>
-            </a>
+            </Link>
+            <div className="flex  flex-col items-center justify-center flex-shrink-0 mt-6  sm:flex-row sm:space-y-0 sm:space-x-4 lg:ml-4 lg:mt-0 lg:justify-end">
+              <button className="inline-flex items-center px-6 py-3 rounded-lg bg-gray-600 text-white">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  className="fill-current w-7 h-7 text-white"
+                >
+                  <path d="M 5.4160156 2.328125 L 12.935547 10.158203 C 13.132547 10.363203 13.45925 10.363203 13.65625 10.158203 L 15.179688 8.5742188 C 15.405688 8.3392188 15.354312 7.956875 15.070312 7.796875 C 11.137313 5.571875 6.2620156 2.811125 5.4160156 2.328125 z M 3.140625 2.8476562 C 3.055625 3.0456562 3 3.2629063 3 3.5039062 L 3 20.591797 C 3 20.788797 3.044375 20.970625 3.109375 21.140625 L 11.576172 12.324219 C 11.762172 12.131219 11.762172 11.826813 11.576172 11.632812 L 3.140625 2.8476562 z M 17.443359 9.2578125 C 17.335484 9.2729375 17.233297 9.32375 17.154297 9.40625 L 15.015625 11.632812 C 14.829625 11.825812 14.829625 12.130219 15.015625 12.324219 L 17.134766 14.529297 C 17.292766 14.694297 17.546141 14.729188 17.744141 14.617188 C 19.227141 13.777188 20.226563 13.212891 20.226562 13.212891 C 20.725562 12.909891 21.007 12.443547 21 11.935547 C 20.992 11.439547 20.702609 10.981938 20.224609 10.710938 C 20.163609 10.676937 19.187672 10.124359 17.763672 9.3183594 C 17.664172 9.2623594 17.551234 9.2426875 17.443359 9.2578125 z M 13.296875 13.644531 C 13.165875 13.644531 13.034047 13.696328 12.935547 13.798828 L 5.4746094 21.566406 C 6.7566094 20.837406 11.328781 18.249578 15.050781 16.142578 C 15.334781 15.981578 15.386156 15.599281 15.160156 15.363281 L 13.65625 13.798828 C 13.55775 13.696328 13.427875 13.644531 13.296875 13.644531 z"></path>
+                </svg>
+                <span className="flex flex-col items-start ml-4 leading-none">
+                  <span className="mb-1 text-xs">GET IT ON</span>
+                  <span className="font-semibold title-font">Google Play</span>
+                </span>
+              </button>
+              <button className="inline-flex mt-5 items-center px-5 py-3 rounded-lg bg-gray-600 text-white">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 50 50"
+                  className="fill-current w-7 h-7 text-white"
+                >
+                  <path d="M 44.527344 34.75 C 43.449219 37.144531 42.929688 38.214844 41.542969 40.328125 C 39.601563 43.28125 36.863281 46.96875 33.480469 46.992188 C 30.46875 47.019531 29.691406 45.027344 25.601563 45.0625 C 21.515625 45.082031 20.664063 47.03125 17.648438 47 C 14.261719 46.96875 11.671875 43.648438 9.730469 40.699219 C 4.300781 32.429688 3.726563 22.734375 7.082031 17.578125 C 9.457031 13.921875 13.210938 11.773438 16.738281 11.773438 C 20.332031 11.773438 22.589844 13.746094 25.558594 13.746094 C 28.441406 13.746094 30.195313 11.769531 34.351563 11.769531 C 37.492188 11.769531 40.8125 13.480469 43.1875 16.433594 C 35.421875 20.691406 36.683594 31.78125 44.527344 34.75 Z M 31.195313 8.46875 C 32.707031 6.527344 33.855469 3.789063 33.4375 1 C 30.972656 1.167969 28.089844 2.742188 26.40625 4.78125 C 24.878906 6.640625 23.613281 9.398438 24.105469 12.066406 C 26.796875 12.152344 29.582031 10.546875 31.195313 8.46875 Z"></path>
+                </svg>
+                <span className="flex flex-col items-start ml-4 leading-none">
+                  <span className="mb-1 text-xs">Download on the</span>
+                  <span className="font-semibold title-font">App Store</span>
+                </span>
+              </button>
+            </div>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
             <div>
               <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                Resources
+                Routers
               </h2>
               <ul className="text-gray-600 dark:text-gray-400">
                 <li className="mb-4">
-                  <a href="https://flowbite.com/" className="hover:underline">
-                    Flowbite
-                  </a>
+                  <Link to="/home" className="hover:underline">
+                    Home
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="https://tailwindcss.com/"
-                    className="hover:underline"
-                  >
-                    Tailwind CSS
-                  </a>
+                  <Link to="/blog" className="hover:underline">
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/regester" className="hover:underline">
+                    Regester
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -44,20 +72,12 @@ const Footer = () => {
               </h2>
               <ul className="text-gray-600 dark:text-gray-400">
                 <li className="mb-4">
-                  <a
-                    href="https://github.com/themesberg/flowbite"
-                    className="hover:underline "
-                  >
-                    Github
-                  </a>
+                  <Link className="hover:underline">
+                    Email: resaicalbook@gmail.com
+                  </Link>
                 </li>
-                <li>
-                  <a
-                    href="https://discord.gg/4eeurUVvTy"
-                    className="hover:underline"
-                  >
-                    Discord
-                  </a>
+                <li className="mb-4">
+                  <Link className="hover:underline">Phom: +8801767988385</Link>
                 </li>
               </ul>
             </div>
@@ -67,14 +87,12 @@ const Footer = () => {
               </h2>
               <ul className="text-gray-600 dark:text-gray-400">
                 <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Privacy Policy
-                  </a>
+                  <Link className="hover:underline">Privacy Policy</Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:underline">
+                  <Link className="hover:underline">
                     Terms &amp; Conditions
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -83,10 +101,10 @@ const Footer = () => {
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-            © 2022{" "}
-            <a href="https://flowbite.com/" className="hover:underline">
-              Flowbite™
-            </a>
+            © 2022-
+            <Link to="/" className="hover:underline">
+              RESAICAL™
+            </Link>
             . All Rights Reserved.
           </span>
           <div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">

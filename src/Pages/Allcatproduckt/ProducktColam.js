@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const ProducktColam = ({ produckt, setIsOpen }) => {
   const {
+    _id,
+    report,
     img,
     title,
     payment,
@@ -19,7 +21,19 @@ const ProducktColam = ({ produckt, setIsOpen }) => {
     salarsimg,
     varify,
   } = produckt;
-  console.log(produckt);
+  const handalreport = (id) => {
+    fetch(`http://localhost:5000/repostToAdmin/${id}`, {
+      method: "POST",
+      headers: {
+        authorization: `brr ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
   return (
     <>
       {payment ? (
@@ -65,13 +79,18 @@ const ProducktColam = ({ produckt, setIsOpen }) => {
                 Resal Price : ${resalesPrice}
               </p>
               <p className="mb-2 text-gray-700">{discription}</p>
-              <label
-                onClick={() => setIsOpen(produckt)}
-                htmlFor="producktConfirmModal"
-                className="btn"
-              >
-                Book now
-              </label>
+              <div className="flex align-middle justify-between">
+                <label
+                  onClick={() => setIsOpen(produckt)}
+                  htmlFor="producktConfirmModal"
+                  className="btn"
+                >
+                  Book now
+                </label>
+                <label onClick={() => handalreport(_id)} className="btn  ">
+                  {report ? "Reported" : "Report"}
+                </label>
+              </div>
             </div>
           </div>
         </>

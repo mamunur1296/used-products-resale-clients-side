@@ -7,7 +7,7 @@ import MyChoice from "./MyChoice";
 
 const Home = () => {
   return (
-    <div>
+    <div className="">
       <Headerbanar></Headerbanar>
       <Catagory></Catagory>
       <Advitairsment></Advitairsment>
