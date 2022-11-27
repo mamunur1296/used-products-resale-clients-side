@@ -154,6 +154,17 @@ export const router = createBrowserRouter([
               </PrivateRoure>
             ),
           },
+          {
+            path: "/allProduckt/:id",
+            loader: ({ params }) =>
+              fetch(`http://localhost:5000/allproduckt?id=${params.id}`),
+
+            element: (
+              <PrivateRoure>
+                <SengleCatagory></SengleCatagory>
+              </PrivateRoure>
+            ),
+          },
         ],
       },
     ],
