@@ -7,7 +7,7 @@ const MuProduckt = () => {
   const { user } = useContext(AuthContext);
 
   const { data, isLoading, refetch } = useQuery({
-    queryKey: ["users"],
+    queryKey: ["mysalespost"],
     queryFn: async () => {
       const res = await fetch(
         `http://localhost:5000/mysalespost?email=${user?.email}`,
@@ -25,25 +25,6 @@ const MuProduckt = () => {
     return <p>Loding ....</p>;
   }
 
-  // const [myproduckt, setMyproduckt] = useState([]);
-  // console.log(myproduckt);
-  // const [userloder, setUserloder] = useState(true);
-  // useEffect(() => {
-  //   fetch(`http://localhost:5000/mysalespost?email=${user?.email}`, {
-  //     headers: {
-  //       authorization: `brr ${localStorage.getItem("token")}`,
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //       setMyproduckt(data);
-  //       setUserloder(false);
-  //     });
-  // }, [user?.email]);
-  // if (userloder) {
-  //   return <p>Loding...</p>;
-  // }
   return (
     <div>
       <div className="overflow-x-auto w-full">

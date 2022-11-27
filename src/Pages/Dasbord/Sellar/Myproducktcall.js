@@ -1,7 +1,7 @@
 import React from "react";
 
 const Myproducktcall = ({ pro, refetch }) => {
-  const { img, title, _id, price } = pro;
+  const { img, title, _id, price, advertised } = pro;
   const handalDelet = (id) => {
     const isAcjest = window.confirm("are you sure ");
     if (isAcjest) {
@@ -17,6 +17,19 @@ const Myproducktcall = ({ pro, refetch }) => {
           refetch();
         });
     }
+  };
+  const handalAddvartice = (addid) => {
+    fetch(`http://localhost:5000/advertised/${addid}`, {
+      method: "POST",
+      headers: {
+        authorization: `brr ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        refetch();
+      });
   };
   return (
     <>
@@ -48,8 +61,11 @@ const Myproducktcall = ({ pro, refetch }) => {
           </button>
         </th>
         <th>
-          <button className="btn btn-ghost text-white bg-gray-400 btn-xs">
-            advartice
+          <button
+            onClick={() => handalAddvartice(_id)}
+            className="btn btn-ghost text-white bg-gray-400 btn-xs"
+          >
+            {advertised ? "ADD Raning" : "advartice"}
           </button>
         </th>
       </tr>
