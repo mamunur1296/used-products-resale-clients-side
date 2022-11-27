@@ -12,6 +12,7 @@ const Modal = ({ isOpen }) => {
     formState: { errors },
   } = useForm();
   const {
+    _id,
     img,
     title,
     price,
@@ -30,6 +31,7 @@ const Modal = ({ isOpen }) => {
   const handalModaldata = (data) => {
     setloding(true);
     const customarInfo = {
+      producktId: _id,
       img,
       title,
       price,

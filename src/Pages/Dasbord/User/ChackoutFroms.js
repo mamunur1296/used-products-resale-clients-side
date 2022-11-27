@@ -8,7 +8,7 @@ const ChackoutFroms = ({ booking }) => {
   const [clientSecret, setClientSecret] = useState("");
   const stripe = useStripe();
   const elements = useElements();
-  const { price, customaremail, _id } = booking;
+  const { price, customaremail, _id, producktId } = booking;
   console.log(JSON.stringify(price));
   useEffect(() => {
     fetch("http://localhost:5000/create-payment-intent", {
@@ -64,6 +64,7 @@ const ChackoutFroms = ({ booking }) => {
         customaremail,
         tranjuctionId: paymentIntent.id,
         bookingId: _id,
+        producktId,
       };
 
       fetch("http://localhost:5000/paymentitem", {
