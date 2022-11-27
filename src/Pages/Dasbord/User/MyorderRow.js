@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const MyorderRow = ({ myorder }) => {
-  const { img, title, price } = myorder;
+  const { img, title, price, _id } = myorder;
   return (
     <>
       <tr>
@@ -19,9 +20,11 @@ const MyorderRow = ({ myorder }) => {
         </td>
         <td>{price}</td>
         <th>
-          <button className="btn btn-ghost text-white bg-gray-400 btn-xs">
-            Pay Now
-          </button>
+          <Link to={`/dasbord/payment/${_id}`}>
+            <button className="btn btn-ghost text-white bg-gray-400 btn-xs">
+              Pay Now
+            </button>
+          </Link>
         </th>
       </tr>
     </>

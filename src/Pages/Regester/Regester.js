@@ -47,7 +47,7 @@ const Regester = () => {
                 };
                 console.log(dbUser);
                 fetch(`http://localhost:5000/users`, {
-                  method: "POST",
+                  method: "PUT",
                   headers: {
                     "content-type": "application/json",
                   },
@@ -55,6 +55,7 @@ const Regester = () => {
                 })
                   .then((res) => res.json())
                   .then((postdata) => {
+                    console.log(postdata);
                     localStorage.setItem("token", postdata?.token);
                     setLoding(false);
                     logout();

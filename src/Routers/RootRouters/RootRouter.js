@@ -18,6 +18,7 @@ import MuProduckt from "../../Pages/Dasbord/Sellar/MuProduckt";
 import MyBuirs from "../../Pages/Dasbord/Sellar/MyBuirs";
 import MyOrder from "../../Pages/Dasbord/User/MyOrder";
 import MyWishlest from "../../Pages/Dasbord/User/MyWishlest";
+import Payment from "../../Pages/Dasbord/User/Payment";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Regester from "../../Pages/Regester/Regester";
@@ -82,6 +83,16 @@ export const router = createBrowserRouter([
             element: (
               <PrivateRoure>
                 <MyOrder></MyOrder>
+              </PrivateRoure>
+            ),
+          },
+          {
+            path: "/dasbord/payment/:id",
+            loader: ({ params }) =>
+              fetch(`http://localhost:5000/payment/${params.id}`),
+            element: (
+              <PrivateRoure>
+                <Payment></Payment>
               </PrivateRoure>
             ),
           },
