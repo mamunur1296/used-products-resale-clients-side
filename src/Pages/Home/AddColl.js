@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const AddColl = ({ add }) => {
+const AddColl = ({ add, refetch }) => {
   const {
     _id,
     report,
@@ -22,7 +22,7 @@ const AddColl = ({ add }) => {
     salarsimg,
     varify,
   } = add;
-  console.log(add);
+
   return (
     <>
       {payment ? (

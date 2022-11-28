@@ -27,7 +27,7 @@ const MuProduckt = () => {
   }
 
   return (
-    <div>
+    <>
       {data.length === 0 ? (
         <>
           <div className="flex items-center justify-center h-screen space-x-2">
@@ -61,7 +61,7 @@ const MuProduckt = () => {
           </div>
         </>
       )}
-    </div>
+    </>
   );
 };
 

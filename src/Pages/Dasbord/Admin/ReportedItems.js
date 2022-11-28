@@ -24,28 +24,38 @@ const ReportedItems = () => {
 
   return (
     <div>
-      <div className="overflow-x-auto w-full">
-        <table className="table w-full">
-          <thead>
-            <tr>
-              <th>Produckt Img</th>
-              <th>Title</th>
-              <th>Price</th>
-              <th>Status</th>
-              <th>delet</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data?.map((user) => (
-              <ReportedColl
-                key={user._id}
-                refetch={refetch}
-                user={user}
-              ></ReportedColl>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {data.length === 0 ? (
+        <>
+          <div className="flex items-center justify-center h-screen space-x-2">
+            <h1 className="text-5xl text-black font-bold">No data Available</h1>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="overflow-x-auto w-full">
+            <table className="table w-full">
+              <thead>
+                <tr>
+                  <th>Produckt Img</th>
+                  <th>Title</th>
+                  <th>Price</th>
+                  <th>Status</th>
+                  <th>delet</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data?.map((user) => (
+                  <ReportedColl
+                    key={user._id}
+                    refetch={refetch}
+                    user={user}
+                  ></ReportedColl>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
     </div>
   );
 };

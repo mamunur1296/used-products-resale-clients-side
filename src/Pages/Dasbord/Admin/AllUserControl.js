@@ -20,31 +20,41 @@ const AllUserControl = () => {
   }
 
   return (
-    <div>
-      <div className="overflow-x-auto w-full">
-        <table className="table w-full">
-          <thead>
-            <tr>
-              <th>Produckt Img</th>
-              <th>Title</th>
-              <th>Price</th>
-              <th>Status</th>
-              <th>delet</th>
-              <th>add</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data?.map((user) => (
-              <AllUserColl
-                key={user._id}
-                refetch={refetch}
-                user={user}
-              ></AllUserColl>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <>
+      {data.length === 0 ? (
+        <>
+          <div className="flex items-center justify-center h-screen space-x-2">
+            <h1 className="text-5xl text-black font-bold">No data Available</h1>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="overflow-x-auto w-full">
+            <table className="table w-full">
+              <thead>
+                <tr>
+                  <th>Produckt Img</th>
+                  <th>Title</th>
+                  <th>Price</th>
+                  <th>Status</th>
+                  <th>delet</th>
+                  <th>add</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data?.map((user) => (
+                  <AllUserColl
+                    key={user._id}
+                    refetch={refetch}
+                    user={user}
+                  ></AllUserColl>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
+    </>
   );
 };
 

@@ -22,7 +22,7 @@ const MyOrder = () => {
   }, []);
 
   return (
-    <div>
+    <>
       {userdata.length === 0 ? (
         <>
           <div className="flex items-center justify-center h-screen space-x-2">
@@ -50,7 +50,7 @@ const MyOrder = () => {
           </div>
         </>
       )}
-    </div>
+    </>
   );
 };
 

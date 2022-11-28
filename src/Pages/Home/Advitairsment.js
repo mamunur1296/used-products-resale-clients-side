@@ -20,9 +20,12 @@ const Advitairsment = () => {
   if (isLoading) {
     return <Loder></Loder>;
   }
+  console.log(data.length);
   return (
     <>
       {data.length === 0 ? (
+        <></>
+      ) : (
         <>
           <div className="p-6 py-12 bg-orange-200  text-gray-900">
             <div className="container mx-auto">
@@ -49,14 +52,12 @@ const Advitairsment = () => {
             <div className="px-4 py-16 mx-auto  sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
               <div className="grid gap-5 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full">
                 {data.map((add) => (
-                  <AddColl key={add._id} add={add}></AddColl>
+                  <AddColl key={add._id} refetch={refetch} add={add}></AddColl>
                 ))}
               </div>
             </div>
           </div>
         </>
-      ) : (
-        <></>
       )}
     </>
   );

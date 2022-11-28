@@ -1,9 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import { FaRegCheckCircle, FaRegCircle } from "react-icons/fa";
 import { toast } from "react-toastify";
-import { AuthContext } from "../../AuthProvaider/AuthProvaider";
-import Loder from "../../Components/Loder/Loder";
 
 const ProducktColam = ({ produckt, setIsOpen }) => {
   const {

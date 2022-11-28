@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { FaRegCheckCircle, FaRegCircle } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { AuthContext } from "../AuthProvaider/AuthProvaider";
-import Login from "../Pages/Login/Login";
 import SmallLoder from "./Loder/SmallLoder";
 
 const Modal = ({ isOpen, ismodalOpen, setIsModalOpen }) => {
@@ -65,6 +64,7 @@ const Modal = ({ isOpen, ismodalOpen, setIsModalOpen }) => {
       .then((res) => res.json())
       .then((data) => {
         toast.success("your booking confirm ");
+        isOpen("");
         setloding(false);
         reset();
       });

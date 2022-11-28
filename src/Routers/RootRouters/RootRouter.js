@@ -22,7 +22,9 @@ import Payment from "../../Pages/Dasbord/User/Payment";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Regester from "../../Pages/Regester/Regester";
+import AdminRoute from "../PrivateRouters/AdminRoute";
 import PrivateRoure from "../PrivateRouters/PrivateRoure";
+import SelarRoute from "../PrivateRouters/SelarRoute";
 
 export const router = createBrowserRouter([
   {
@@ -90,11 +92,7 @@ export const router = createBrowserRouter([
             path: "/dasbord/payment/:id",
             loader: ({ params }) =>
               fetch(`https://recycle-server.vercel.app/payment/${params.id}`),
-            element: (
-              <PrivateRoure>
-                <Payment></Payment>
-              </PrivateRoure>
-            ),
+            element: <Payment></Payment>,
           },
           {
             path: "/dasbord/mywishlist",
@@ -107,31 +105,59 @@ export const router = createBrowserRouter([
 
           {
             path: "/dasbord/myproduckt",
-            element: <MuProduckt></MuProduckt>,
+            element: (
+              <SelarRoute>
+                <MuProduckt></MuProduckt>
+              </SelarRoute>
+            ),
           },
           {
             path: "/dasbord/addproduckt",
-            element: <AddProjuct></AddProjuct>,
+            element: (
+              <SelarRoute>
+                <AddProjuct></AddProjuct>
+              </SelarRoute>
+            ),
           },
-          {
-            path: "/dasbord/mybuers",
-            element: <MyBuirs></MyBuirs>,
-          },
+          // {
+          //   path: "/dasbord/mybuers",
+          //   element: (
+          //     <SelarRoute>
+          //       <MyBuirs></MyBuirs>,
+          //     </SelarRoute>
+          //   ),
+          // },
           {
             path: "/dasbord/allselars",
-            element: <AllSellers></AllSellers>,
+            element: (
+              <AdminRoute>
+                <AllSellers></AllSellers>
+              </AdminRoute>
+            ),
           },
           {
             path: "/dasbord/allbuyers",
-            element: <ALLbuyers></ALLbuyers>,
+            element: (
+              <AdminRoute>
+                <ALLbuyers></ALLbuyers>
+              </AdminRoute>
+            ),
           },
           {
             path: "/dasbord/alluser",
-            element: <AllUserControl></AllUserControl>,
+            element: (
+              <AdminRoute>
+                <AllUserControl></AllUserControl>
+              </AdminRoute>
+            ),
           },
           {
             path: "/dasbord/reporteditems",
-            element: <ReportedItems></ReportedItems>,
+            element: (
+              <AdminRoute>
+                <ReportedItems></ReportedItems>
+              </AdminRoute>
+            ),
           },
         ],
       },
