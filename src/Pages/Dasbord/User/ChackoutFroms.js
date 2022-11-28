@@ -14,7 +14,7 @@ const ChackoutFroms = ({ booking }) => {
   const { price, customaremail, _id, producktId } = booking;
   console.log(JSON.stringify(price));
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://recycle-server.vercel.app/create-payment-intent", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -70,7 +70,7 @@ const ChackoutFroms = ({ booking }) => {
         producktId,
       };
 
-      fetch("http://localhost:5000/paymentitem", {
+      fetch("https://recycle-server.vercel.app/paymentitem", {
         method: "POST",
         headers: {
           "content-type": "application/json",

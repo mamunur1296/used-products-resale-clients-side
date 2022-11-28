@@ -27,7 +27,7 @@ const Login = () => {
     setLoding(true);
     loginWithEmail(data.email, data.password)
       .then((logindata) => {
-        fetch(`http://localhost:5000/users?email=${data.email}`, {
+        fetch(`https://recycle-server.vercel.app/users?email=${data.email}`, {
           method: "get",
         })
           .then((res) => res.json())
@@ -58,7 +58,7 @@ const Login = () => {
         };
         console.log(dbUser);
 
-        fetch(`http://localhost:5000/users?email=${user?.email}`, {
+        fetch(`https://recycle-server.vercel.app/users?email=${user?.email}`, {
           method: "PUT",
           headers: {
             "content-type": "application/json",

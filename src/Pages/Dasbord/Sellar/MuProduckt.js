@@ -11,7 +11,7 @@ const MuProduckt = () => {
     queryKey: ["mysalespost"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/mysalespost?email=${user?.email}`,
+        `https://recycle-server.vercel.app/mysalespost?email=${user?.email}`,
         {
           headers: {
             authorization: `brr ${localStorage.getItem("token")}`,

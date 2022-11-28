@@ -6,7 +6,7 @@ const AllUserControl = () => {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/alluerts", {
+      const res = await fetch("https://recycle-server.vercel.app/alluerts", {
         headers: {
           authorization: `brr ${localStorage.getItem("token")}`,
         },

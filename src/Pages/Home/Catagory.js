@@ -10,7 +10,7 @@ const Catagory = () => {
   const [loder, setLoder] = useState(false);
   useEffect(() => {
     setLoder(true);
-    fetch("http://localhost:5000/allCatagory", {
+    fetch("https://recycle-server.vercel.app/allCatagory", {
       headers: {
         authorization: `brr ${localStorage.getItem("token")}`,
       },

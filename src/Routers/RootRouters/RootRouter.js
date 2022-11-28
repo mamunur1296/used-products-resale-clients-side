@@ -89,7 +89,7 @@ export const router = createBrowserRouter([
           {
             path: "/dasbord/payment/:id",
             loader: ({ params }) =>
-              fetch(`http://localhost:5000/payment/${params.id}`),
+              fetch(`https://recycle-server.vercel.app/payment/${params.id}`),
             element: (
               <PrivateRoure>
                 <Payment></Payment>
@@ -147,7 +147,9 @@ export const router = createBrowserRouter([
           {
             path: "/allProduckt/:id",
             loader: ({ params }) =>
-              fetch(`http://localhost:5000/allproduckt?id=${params.id}`),
+              fetch(
+                `https://recycle-server.vercel.app/allproduckt?id=${params.id}`
+              ),
 
             element: (
               <PrivateRoure>
@@ -158,7 +160,9 @@ export const router = createBrowserRouter([
           {
             path: "/allProduckt/:id",
             loader: ({ params }) =>
-              fetch(`http://localhost:5000/allproduckt?id=${params.id}`),
+              fetch(
+                `https://recycle-server.vercel.app/allproduckt?id=${params.id}`
+              ),
 
             element: (
               <PrivateRoure>

@@ -4,7 +4,7 @@ export const useUsers = () => {
   const [dbuser, setDbuser] = useState([]);
   const [userloder, setUserloder] = useState(true);
   useEffect(() => {
-    fetch("http://localhost:5000/alluerts")
+    fetch("https://recycle-server.vercel.app/alluerts")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

@@ -8,7 +8,7 @@ const ReportedItems = () => {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["repostitems"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/repostitems", {
+      const res = await fetch("https://recycle-server.vercel.app/repostitems", {
         headers: {
           authorization: `brr ${localStorage.getItem("token")}`,
         },

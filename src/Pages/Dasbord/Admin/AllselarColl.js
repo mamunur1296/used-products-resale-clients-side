@@ -5,7 +5,7 @@ const AllselarColl = ({ seller, refetch }) => {
   const handalUserDelete = (id) => {
     const isAcjest = window.confirm("are you sure ");
     if (isAcjest) {
-      fetch(`http://localhost:5000/userDeleit/${id}`, {
+      fetch(`https://recycle-server.vercel.app/userDeleit/${id}`, {
         method: "DELETE",
         headers: {
           authorization: `brr ${localStorage.getItem("token")}`,
@@ -19,7 +19,7 @@ const AllselarColl = ({ seller, refetch }) => {
     }
   };
   const handalVarifi = (id) => {
-    fetch(`http://localhost:5000/salarVarify/${id}`, {
+    fetch(`https://recycle-server.vercel.app/salarVarify/${id}`, {
       method: "PUT",
       headers: {
         authorization: `brr ${localStorage.getItem("token")}`,

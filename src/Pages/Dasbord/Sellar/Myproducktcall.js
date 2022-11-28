@@ -5,7 +5,7 @@ const Myproducktcall = ({ pro, refetch }) => {
   const handalDelet = (id) => {
     const isAcjest = window.confirm("are you sure ");
     if (isAcjest) {
-      fetch(`http://localhost:5000/myproduckt/${id}`, {
+      fetch(`https://recycle-server.vercel.app/myproduckt/${id}`, {
         method: "DELETE",
         headers: {
           authorization: `brr ${localStorage.getItem("token")}`,
@@ -19,7 +19,7 @@ const Myproducktcall = ({ pro, refetch }) => {
     }
   };
   const handalAddvartice = (addid) => {
-    fetch(`http://localhost:5000/advertised/${addid}`, {
+    fetch(`https://recycle-server.vercel.app/advertised/${addid}`, {
       method: "POST",
       headers: {
         authorization: `brr ${localStorage.getItem("token")}`,

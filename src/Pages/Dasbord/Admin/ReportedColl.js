@@ -6,7 +6,7 @@ const ReportedColl = ({ user, refetch }) => {
   const handalUserDelete = (id) => {
     const isAcjest = window.confirm("are you sure ");
     if (isAcjest) {
-      fetch(`http://localhost:5000/RepostdeleteDeleit/${id}`, {
+      fetch(`https://recycle-server.vercel.app/RepostdeleteDeleit/${id}`, {
         method: "DELETE",
         headers: {
           authorization: `brr ${localStorage.getItem("token")}`,

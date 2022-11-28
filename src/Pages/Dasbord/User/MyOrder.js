@@ -8,11 +8,14 @@ const MyOrder = () => {
   const [userdata, setuserData] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/usersbookings?email=${user?.email}`, {
-        headers: {
-          authorization: `brr ${localStorage.getItem("token")}`,
-        },
-      })
+      .get(
+        `https://recycle-server.vercel.app/usersbookings?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `brr ${localStorage.getItem("token")}`,
+          },
+        }
+      )
       .then((res) => {
         setuserData(res.data);
       });

@@ -10,7 +10,7 @@ const ALLbuyers = () => {
     queryKey: ["users"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/allbuyers?email=${user?.email}`,
+        `https://recycle-server.vercel.app/allbuyers?email=${user?.email}`,
         {
           headers: {
             authorization: `brr ${localStorage.getItem("token")}`,

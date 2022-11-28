@@ -8,7 +8,7 @@ const Advitairsment = () => {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/addItems`, {
+      const res = await fetch(`https://recycle-server.vercel.app/addItems`, {
         headers: {
           authorization: `brr ${localStorage.getItem("token")}`,
         },

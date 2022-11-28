@@ -15,7 +15,7 @@ const SengleCatagory = () => {
     queryKey: ["allbsaller"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/allbsaller?email=${user?.email}`,
+        `https://recycle-server.vercel.app/allbsaller?email=${user?.email}`,
         {
           headers: {
             authorization: `brr ${localStorage.getItem("token")}`,

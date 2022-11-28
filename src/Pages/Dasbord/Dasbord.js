@@ -9,7 +9,7 @@ const Dasbord = () => {
   console.log(dbuser?.email);
   const [userloder, setUserloder] = useState(true);
   useEffect(() => {
-    fetch(`http://localhost:5000/loginUser?email=${user?.email}`)
+    fetch(`https://recycle-server.vercel.app/loginUser?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

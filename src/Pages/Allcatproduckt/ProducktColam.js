@@ -28,7 +28,7 @@ const ProducktColam = ({ produckt, setIsOpen }) => {
   } = produckt;
 
   const handalreport = (id) => {
-    fetch(`http://localhost:5000/repostToAdmin/${id}`, {
+    fetch(`https://recycle-server.vercel.app/repostToAdmin/${id}`, {
       method: "POST",
       headers: {
         authorization: `brr ${localStorage.getItem("token")}`,

@@ -8,7 +8,7 @@ const MyChoice = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["allbsaller"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/salarsTohome`);
+      const res = await fetch(`https://recycle-server.vercel.app/salarsTohome`);
       const data = res.json();
       return data;
     },

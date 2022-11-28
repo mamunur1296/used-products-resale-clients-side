@@ -19,7 +19,7 @@ const AddProjuct = () => {
     queryKey: ["singleUser"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/loginUser?email=${user?.email}`,
+        `https://recycle-server.vercel.app/loginUser?email=${user?.email}`,
         {
           headers: {
             authorization: `brr ${localStorage.getItem("token")}`,
@@ -72,7 +72,7 @@ const AddProjuct = () => {
         const allcatagory = {
           catagory: data.catagory,
         };
-        fetch("http://localhost:5000/produckt", {
+        fetch("https://recycle-server.vercel.app/produckt", {
           method: "POST",
           headers: {
             "content-type": "application/json",

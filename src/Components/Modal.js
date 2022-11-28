@@ -55,7 +55,7 @@ const Modal = ({ isOpen, ismodalOpen, setIsModalOpen }) => {
       customaraddress: data.customaraddress,
       customaremail: user?.email,
     };
-    fetch("http://localhost:5000/customardetails", {
+    fetch("https://recycle-server.vercel.app/customardetails", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -51,7 +51,7 @@ const Regester = () => {
                   varify: false,
                 };
                 console.log(dbUser);
-                fetch(`http://localhost:5000/users`, {
+                fetch(`https://recycle-server.vercel.app/users`, {
                   method: "PUT",
                   headers: {
                     "content-type": "application/json",
