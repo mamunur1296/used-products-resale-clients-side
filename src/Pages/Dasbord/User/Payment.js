@@ -1,13 +1,17 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import ChackoutFroms from "./ChackoutFroms";
+import Loder from "../../../Components/Loder/Loder";
 const stripePromise = loadStripe(process.env.REACT_APP_STRIP_PK);
 console.log(stripePromise);
 const Payment = () => {
   const data = useLoaderData();
-  console.log(data);
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <Loder></Loder>;
+  }
   return (
     <div>
       <div className="w-96 mx-auto">

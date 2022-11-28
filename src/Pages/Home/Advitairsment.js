@@ -20,7 +20,7 @@ const Advitairsment = () => {
   if (isLoading) {
     return <Loder></Loder>;
   }
-  console.log(data.length);
+  console.log(data);
   return (
     <>
       {data.length === 0 ? (

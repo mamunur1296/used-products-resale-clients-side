@@ -38,7 +38,6 @@ const AllUserControl = () => {
                   <th>Price</th>
                   <th>Status</th>
                   <th>delet</th>
-                  <th>add</th>
                 </tr>
               </thead>
               <tbody>

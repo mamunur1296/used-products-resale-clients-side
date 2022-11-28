@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import { AuthContext } from "../../AuthProvaider/AuthProvaider";
 import Loder from "../../Components/Loder/Loder";
 import Modal from "../../Components/Modal";
@@ -10,6 +10,7 @@ const SengleCatagory = () => {
   const [isOpen, setIsOpen] = useState({});
   const [ismodalOpen, setIsModalOpen] = useState(false);
   const producktdata = useLoaderData();
+  const navigation = useNavigation();
   const { user } = useContext(AuthContext);
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["allbsaller"],
@@ -27,6 +28,9 @@ const SengleCatagory = () => {
     },
   });
   if (isLoading) {
+    return <Loder></Loder>;
+  }
+  if (navigation.state === "loading") {
     return <Loder></Loder>;
   }
   return (
