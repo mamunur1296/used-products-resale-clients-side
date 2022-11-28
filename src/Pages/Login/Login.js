@@ -2,9 +2,13 @@ import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvaider/AuthProvaider";
+import SmallLoder from "../../Components/Loder/SmallLoder";
+import useTitle from "../../Hooks/useTitle";
 
 const Login = () => {
+  useTitle("login page ");
   const { user, loginWithEmail, loginWithGoogle } = useContext(AuthContext);
+  const [loding, setLoding] = useState(false);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -20,6 +24,7 @@ const Login = () => {
   });
 
   const handalLogin = (data) => {
+    setLoding(true);
     loginWithEmail(data.email, data.password)
       .then((logindata) => {
         fetch(`http://localhost:5000/users?email=${data.email}`, {
@@ -30,10 +35,14 @@ const Login = () => {
             localStorage.setItem("token", postdata?.token);
 
             navigate(from, { replace: true });
+            setLoding(false);
           });
         console.log(logindata);
       })
-      .then((err) => console.log(err));
+      .then((err) => {
+        console.log(err);
+        setLoding(false);
+      });
   };
 
   const handalGoogle = () => {
@@ -66,7 +75,7 @@ const Login = () => {
   };
   return (
     <div>
-      <div className="w-1/3 mx-auto">
+      <div className=" my-5 mx-5 md:w-1/3 md:mx-auto">
         <p className="text-5xl font-bold mb-10">Pleass Login </p>
         <form onSubmit={handleSubmit(handalLogin)}>
           <div>
@@ -99,33 +108,45 @@ const Login = () => {
               {...register("password", {
                 required: "this fild is requerd",
                 pattern: {
+                  // value: /^[@#][A-Za-z0-9]{7,30}$/,
                   message:
-                    "password Mast( 8 to 32 caractor ,uppsercass ,lower Cash ,1 number )",
+                    "password Mast( 7 to 13 caractor ,uppsercass ,lower Cash ,1 number )",
                 },
               })}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
             />
+            {errors.password && (
+              <p>
+                <small className="text-red-500">
+                  {errors.password.message}
+                </small>
+              </p>
+            )}
             <button className="text-xs hover:underline">
               Forgot password?
             </button>
           </div>
-          {errors.password && (
-            <small className="text-red-500">{errors.password.message}</small>
-          )}
+
           <button
             type="submit"
-            className="text-white text-3xl  w-full mt-5 bg-gray-600 hover:bg-gray-700  font-medium rounded-full text-sm px-5 py-2.5 text-center  "
+            class="text-gray-900 w-full hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
           >
-            Login
-          </button>
-          <button
-            onClick={handalGoogle}
-            type="submit"
-            className="text-white text-3xl  w-full mt-5 bg-gray-600 hover:bg-gray-700  font-medium rounded-full text-sm px-5 py-2.5 text-center  "
-          >
-            Login With Google
+            {loding ? (
+              <>
+                <SmallLoder></SmallLoder>
+              </>
+            ) : (
+              <>LogIn</>
+            )}
           </button>
         </form>
+        <button
+          onClick={handalGoogle}
+          type="submit"
+          class="text-gray-900 w-full hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+        >
+          Login With Google
+        </button>
         <p className="px-6 text-sm text-center mt-5 ">
           Don't have an account yet?
           <Link to="/regester" className="hover:underline ">

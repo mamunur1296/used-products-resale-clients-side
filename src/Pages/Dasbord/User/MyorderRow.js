@@ -9,7 +9,7 @@ const MyorderRow = ({ myorder }) => {
         <td>
           <div className="flex items-center space-x-3">
             <div className="avatar">
-              <div className="mask  w-40 ">
+              <div className="mask  w-20  ">
                 <img src={img} alt="" />
               </div>
             </div>

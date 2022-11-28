@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { AuthContext } from "../../AuthProvaider/AuthProvaider";
+import Loder from "../../Components/Loder/Loder";
 
 const Dasbord = () => {
   const { user } = useContext(AuthContext);
@@ -17,7 +18,7 @@ const Dasbord = () => {
       });
   }, [user?.email]);
   if (userloder) {
-    return <p>Losing...</p>;
+    return <Loder></Loder>;
   }
 
   return (
@@ -46,25 +47,20 @@ const Dasbord = () => {
             <div className="flex-1 px-2 mx-2"> My Dashbord</div>
             <div className="flex-none hidden lg:block">
               <ul className="menu menu-horizontal">
-                {dbuser?.roll === "user" ? (
-                  <>
-                    <li>
-                      <Link to="/dasbord/myorderpage">My Order</Link>
-                    </li>
-                    <li>
-                      <Link to="/dasbord/mywishlist">My wishlest</Link>
-                    </li>
-                  </>
-                ) : (
-                  <></>
-                )}
+                <li>
+                  <Link to="/dasbord">My Order</Link>
+                </li>
+                <li>
+                  <Link to="/dasbord/mywishlist">My wishlest</Link>
+                </li>
+
                 {dbuser?.roll === "Seller" ? (
                   <>
                     <li>
-                      <Link to="/dasbord/addproduckt">Add A product</Link>
+                      <Link to="/dasbord/myproduckt">My Products</Link>
                     </li>
                     <li>
-                      <Link to="/dasbord/myproducts">My Products</Link>
+                      <Link to="/dasbord/addproduckt">Add A product</Link>
                     </li>
                     <li>
                       <Link to="/dasbord/mybuers">My buyers</Link>

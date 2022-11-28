@@ -1,7 +1,7 @@
 import React from "react";
 
 const MyWishlest = () => {
-  return <div>this is my wish lest</div>;
+  return <div></div>;
 };
 
 export default MyWishlest;

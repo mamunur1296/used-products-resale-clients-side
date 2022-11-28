@@ -2,8 +2,11 @@ import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvaider/AuthProvaider";
+import SmallLoder from "../../Components/Loder/SmallLoder";
+import useTitle from "../../Hooks/useTitle";
 
 const Regester = () => {
+  useTitle("Regester ");
   const { user, regester, logout, updateregesterUser } =
     useContext(AuthContext);
   const [loging, setLoding] = useState(false);
@@ -15,7 +18,9 @@ const Regester = () => {
     register,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "onChange",
+  });
   const handalRegesterForm = (data) => {
     setLoding(true);
 
@@ -74,7 +79,7 @@ const Regester = () => {
       });
   };
   return (
-    <div className="w-1/3 mx-auto">
+    <div className=" my-5 mx-5 md:w-1/3 md:mx-auto">
       <p className="text-5xl font-bold mb-10">Pleass Regester</p>
       <form onSubmit={handleSubmit(handalRegesterForm)}>
         <div className="mt-10">
@@ -107,16 +112,25 @@ const Regester = () => {
           <input
             type="email"
             placeholder="Enter your Password"
-            {...register("email", { required: true })}
+            {...register("email", {
+              required: "this fild is requerd",
+              pattern: {
+                value: /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/,
+                message: "enter your valid email",
+              },
+            })}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
           />
         </div>
+        {errors.email && (
+          <small className="text-red-500">{errors.email.message}</small>
+        )}
         <div className="mt-10">
           <label className="block mb-2 text-sm font-medium text-gray-900 ">
-            Select This Option
+            Buyers/Seller
           </label>
           <select
-            className="block mb-2 text-sm font-medium text-gray-900 "
+            className="bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
             {...register("roll")}
           >
             <option value="user">buyers</option>
@@ -143,17 +157,32 @@ const Regester = () => {
             type="Password"
             placeholder="Enter your Password"
             {...register("password", {
-              required: true,
+              required: "this fild is requerd",
+              pattern: {
+                // value: /^[@#][A-Za-z0-9]{7,30}$/,
+                message:
+                  "password Mast( 7 to 13 caractor ,uppsercass ,lower Cash ,1 number )",
+              },
             })}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
           />
         </div>
-
+        {errors.password && (
+          <p>
+            <small className="text-red-500">{errors.password.message}</small>
+          </p>
+        )}
         <button
           type="submit"
-          className="text-white text-3xl  w-full mt-5 bg-gray-800 hover:bg-gray-700  font-medium rounded-full text-sm px-5 py-2 text-center  "
+          class="text-gray-900 my-10 w-full hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
         >
-          {loging ? <p className="animate-pulse"> Loding...</p> : "Regester"}
+          {loging ? (
+            <>
+              <SmallLoder></SmallLoder>
+            </>
+          ) : (
+            "Regester"
+          )}
         </button>
       </form>
     </div>

@@ -22,7 +22,7 @@ const Advitairsment = () => {
   }
   return (
     <div>
-      {data.length ? (
+      {data.length > 0 ? (
         <>
           <div className="p-6 py-12 bg-orange-200  text-gray-900">
             <div className="container mx-auto">

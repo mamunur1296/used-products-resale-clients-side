@@ -1,7 +1,7 @@
 import React from "react";
 
 const Myproducktcall = ({ pro, refetch }) => {
-  const { img, title, _id, price, advertised } = pro;
+  const { img, title, _id, price, advertised, payment } = pro;
   const handalDelet = (id) => {
     const isAcjest = window.confirm("are you sure ");
     if (isAcjest) {
@@ -47,25 +47,26 @@ const Myproducktcall = ({ pro, refetch }) => {
           <p>{title}</p>
         </td>
         <td>{price}</td>
+
+        <th>
+          <button class="py-2 px-3 text-xs font-medium text-center text-white bg-black rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            {payment ? "sold" : "available"}
+          </button>
+        </th>
         <th>
           <button
             onClick={() => handalDelet(_id)}
-            className="btn btn-ghost text-white bg-gray-400 btn-xs"
+            class="py-2 px-3 text-xs font-medium text-center text-white bg-black rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             DELETE
           </button>
         </th>
         <th>
-          <button className="btn btn-ghost text-white bg-gray-400 btn-xs">
-            delet
-          </button>
-        </th>
-        <th>
           <button
             onClick={() => handalAddvartice(_id)}
-            className="btn btn-ghost text-white bg-gray-400 btn-xs"
+            class="py-2 px-3 text-xs font-medium text-center text-white bg-black rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
-            {advertised ? "ADD Raning" : "advartice"}
+            {advertised ? "Add Raning" : "advartice"}
           </button>
         </th>
       </tr>

@@ -79,7 +79,7 @@ export const router = createBrowserRouter([
         ),
         children: [
           {
-            path: "/dasbord/myorderpage",
+            path: "/dasbord",
             element: (
               <PrivateRoure>
                 <MyOrder></MyOrder>
@@ -104,13 +104,14 @@ export const router = createBrowserRouter([
               </PrivateRoure>
             ),
           },
+
+          {
+            path: "/dasbord/myproduckt",
+            element: <MuProduckt></MuProduckt>,
+          },
           {
             path: "/dasbord/addproduckt",
             element: <AddProjuct></AddProjuct>,
-          },
-          {
-            path: "/dasbord/myproducts",
-            element: <MuProduckt></MuProduckt>,
           },
           {
             path: "/dasbord/mybuers",

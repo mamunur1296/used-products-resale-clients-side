@@ -3,7 +3,9 @@ import moment from "moment/moment";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../AuthProvaider/AuthProvaider";
+import SmallLoder from "../../Components/Loder/SmallLoder";
 
 const AddProjuct = () => {
   const { user } = useContext(AuthContext);
@@ -81,7 +83,8 @@ const AddProjuct = () => {
           .then((res) => res.json())
           .then((data) => {
             setLoding(false);
-            navigate("/dasbord/myproducts");
+            toast.success("Post Successfull ");
+            navigate("/dasbord/myproduckt");
           });
       })
       .catch((err) => {
@@ -91,7 +94,7 @@ const AddProjuct = () => {
   };
   return (
     <div>
-      <div className="w-1/3 mx-auto">
+      <div className=" my-10 mx-5 md:w-1/3 md:mx-auto">
         <p className="text-5xl font-bold mb-10">Add your produckt</p>
         <form onSubmit={handleSubmit(handalPostFrom)}>
           <div className="mt-10">
@@ -100,7 +103,7 @@ const AddProjuct = () => {
             </label>
             <input
               type="text"
-              placeholder="Enter your Password"
+              placeholder="product  name"
               {...register("title", { required: true })}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
             />
@@ -111,7 +114,7 @@ const AddProjuct = () => {
             </label>
             <input
               type="text"
-              placeholder="Enter your Password"
+              placeholder="$price"
               {...register("price", { required: true })}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
             />
@@ -122,7 +125,7 @@ const AddProjuct = () => {
             </label>
             <input
               type="text"
-              placeholder="Enter your Password"
+              placeholder="$ Resales Price"
               {...register("reselPrice", { required: true })}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
             />
@@ -133,7 +136,7 @@ const AddProjuct = () => {
             </label>
             <input
               type="text"
-              placeholder="Enter your Password"
+              placeholder=" Enter Your Location"
               {...register("location", { required: true })}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
             />
@@ -141,11 +144,11 @@ const AddProjuct = () => {
 
           <div className="mt-10">
             <label className="block mb-2 text-sm font-medium text-gray-900 ">
-              years of used
+              Years of used
             </label>
             <input
               type="text"
-              placeholder="Enter your Password"
+              placeholder="Years of used"
               {...register("oldtime", { required: true })}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
             />
@@ -156,7 +159,7 @@ const AddProjuct = () => {
             </label>
             <input
               type="text"
-              placeholder="Enter your Password"
+              placeholder="+880"
               {...register("phon", { required: true })}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
             />
@@ -164,7 +167,7 @@ const AddProjuct = () => {
 
           <div className="mt-10">
             <label className="block mb-2 text-sm font-medium text-gray-900 ">
-              Conition
+              Condition
             </label>
 
             <select
@@ -203,7 +206,7 @@ const AddProjuct = () => {
             </label>
             <input
               type="file"
-              placeholder="Enter your Password"
+              placeholder="Product Image"
               {...register("userImg", { required: true })}
               className="bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
             />
@@ -216,14 +219,20 @@ const AddProjuct = () => {
               rows="4"
               {...register("discription", { required: true })}
               className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Leave a comment..."
+              placeholder="Leave a message"
             ></textarea>
           </div>
           <button
             type="submit"
             className="text-white text-3xl  w-full mt-5 bg-gray-800 hover:bg-gray-700  font-medium rounded-full text-sm px-5 py-2 text-center  "
           >
-            {loding ? "Loding..." : "Submit"}
+            {loding ? (
+              <>
+                <SmallLoder></SmallLoder>
+              </>
+            ) : (
+              "Submit"
+            )}
           </button>
         </form>
       </div>
