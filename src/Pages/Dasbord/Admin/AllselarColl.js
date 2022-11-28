@@ -37,7 +37,7 @@ const AllselarColl = ({ seller, refetch }) => {
         <td>
           <div className="flex items-center space-x-3">
             <div className="avatar">
-              <div className="mask  w-20 ">
+              <div className="mask rounded-full  w-14 ">
                 <img src={photo} alt="" />
               </div>
             </div>

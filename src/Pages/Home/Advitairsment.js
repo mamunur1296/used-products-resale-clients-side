@@ -21,8 +21,8 @@ const Advitairsment = () => {
     return <Loder></Loder>;
   }
   return (
-    <div>
-      {data.length > 0 ? (
+    <>
+      {data.length === 0 ? (
         <>
           <div className="p-6 py-12 bg-orange-200  text-gray-900">
             <div className="container mx-auto">
@@ -58,7 +58,7 @@ const Advitairsment = () => {
       ) : (
         <></>
       )}
-    </div>
+    </>
   );
 };
 

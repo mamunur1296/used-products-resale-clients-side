@@ -10,8 +10,11 @@ const Payment = () => {
   console.log(data);
   return (
     <div>
-      <h1>payment</h1>
-      <div className="w-96">
+      <div className="w-96 mx-auto">
+        <h2 className="text-3xl text-center py-5">Payment</h2>
+        <p>Price: ${data.price}</p>
+        <p>Tax: 1%</p>
+        <p className="mb-5">Vat: .01%</p>
         <Elements stripe={stripePromise}>
           <ChackoutFroms booking={data} />
         </Elements>

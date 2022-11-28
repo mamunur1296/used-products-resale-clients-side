@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { AuthContext } from "../../../AuthProvaider/AuthProvaider";
+import Loder from "../../../Components/Loder/Loder";
 import AllbuyersCall from "./AllbuyersCall";
 
 const ALLbuyers = () => {
@@ -21,7 +22,7 @@ const ALLbuyers = () => {
     },
   });
   if (isLoading) {
-    return <p>Loding ....</p>;
+    return <Loder></Loder>;
   }
 
   return (

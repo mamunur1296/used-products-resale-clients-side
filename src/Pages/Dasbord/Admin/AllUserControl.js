@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import Loder from "../../../Components/Loder/Loder";
 import AllUserColl from "./AllUserColl";
 
 const AllUserControl = () => {
@@ -15,7 +16,7 @@ const AllUserControl = () => {
     },
   });
   if (isLoading) {
-    return <p>Loding ....</p>;
+    return <Loder></Loder>;
   }
 
   return (

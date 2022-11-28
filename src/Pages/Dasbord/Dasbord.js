@@ -50,9 +50,6 @@ const Dasbord = () => {
                 <li>
                   <Link to="/dasbord">My Order</Link>
                 </li>
-                <li>
-                  <Link to="/dasbord/mywishlist">My wishlest</Link>
-                </li>
 
                 {dbuser?.roll === "Seller" ? (
                   <>

@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { toast } from "react-toastify";
+import Loder from "../../../Components/Loder/Loder";
 import ReportedColl from "./ReportedColl";
 
 const ReportedItems = () => {
   const { data, isLoading, refetch } = useQuery({
-    queryKey: ["users"],
+    queryKey: ["repostitems"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/repostitems", {
         headers: {
@@ -12,11 +14,12 @@ const ReportedItems = () => {
         },
       });
       const data = res.json();
+      // toast.success("deleted successfully");
       return data;
     },
   });
   if (isLoading) {
-    return <p>Loding ....</p>;
+    return <Loder></Loder>;
   }
 
   return (
@@ -30,7 +33,6 @@ const ReportedItems = () => {
               <th>Price</th>
               <th>Status</th>
               <th>delet</th>
-              <th>add</th>
             </tr>
           </thead>
           <tbody>

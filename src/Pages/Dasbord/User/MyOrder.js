@@ -32,7 +32,7 @@ const MyOrder = () => {
             <table className="table w-full">
               <thead>
                 <tr>
-                  <th>Produckt Img</th>
+                  <th>Photo</th>
                   <th>Title</th>
                   <th>Price</th>
                   <th>Status</th>

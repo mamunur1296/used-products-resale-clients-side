@@ -31,12 +31,12 @@ const AllSellers = () => {
         <table className="table w-full">
           <thead>
             <tr>
-              <th>Produckt Img</th>
-              <th>Title</th>
-              <th>Price</th>
-              <th>Status</th>
-              <th>delet</th>
-              <th>add</th>
+              <th>Photo</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Roll</th>
+              <th>Delete</th>
+              <th>Verify </th>
             </tr>
           </thead>
           <tbody>

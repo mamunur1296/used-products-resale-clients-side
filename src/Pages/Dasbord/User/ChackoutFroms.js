@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const ChackoutFroms = ({ booking }) => {
   const [cardError, setCardError] = useState("");
@@ -8,6 +10,7 @@ const ChackoutFroms = ({ booking }) => {
   const [clientSecret, setClientSecret] = useState("");
   const stripe = useStripe();
   const elements = useElements();
+  const navigite = useNavigate();
   const { price, customaremail, _id, producktId } = booking;
   console.log(JSON.stringify(price));
   useEffect(() => {
@@ -77,7 +80,8 @@ const ChackoutFroms = ({ booking }) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          toast.success("your payment successfully ");
+          navigite("/dasbord");
         })
         .catch((err) => console.log(err));
 
@@ -87,7 +91,7 @@ const ChackoutFroms = ({ booking }) => {
   };
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form className="" onSubmit={handleSubmit}>
         <CardElement
           options={{
             style: {
@@ -104,7 +108,11 @@ const ChackoutFroms = ({ booking }) => {
             },
           }}
         />
-        <button type="submit" disabled={!stripe || !clientSecret}>
+        <button
+          type="submit"
+          disabled={!stripe || !clientSecret}
+          class="text-gray-900 mt-6 w-full hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+        >
           PayMent
         </button>
       </form>
